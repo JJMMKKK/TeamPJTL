@@ -1,8 +1,10 @@
-<%@page import="com.dto.DTO"%>
+<%@page import="com.dto.memberDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
+<!-- 비밀번호 찾기에서 비밀번호를 찾을 경우, 나오는 페이지의 jsp -->
 
 <head>
     <meta charset="UTF-8">
@@ -48,7 +50,7 @@
         }
     </style>
     
-    <script>
+    <script type="text/javascript">
         function maskPassword(password) {
             var visible = Math.ceil(password.length / 2);				// 마스킹할 길이 (비밀번호 길이의 절반)
             var masked = "*".repeat(password.length - visible);
@@ -59,18 +61,19 @@
 
 <body>
     <%
-        List<DTO> list = (List<DTO>) session.getAttribute("foundUserPW");
+            List<memberDTO> list = (List<memberDTO>) session.getAttribute("foundUserPW");
     %>
 
     <h2>찾은 비밀번호 정보</h2>
+    
     <%
-        for (DTO dto : list) {
-        	
-        	//**************************************************************************************************
-            String maskedPassword = "<script>document.write(maskPassword('" + dto.getUserPw() + "'));</script>";
-     	    //**************************************************************************************************
+		    //JavaScript 함수는 클라이언트 측에서 실행되므로, Java 코드에서 직접 호출할 수 없기 때문에 scrip 형식
+            for (memberDTO dto : list) {
+                String maskedPassword = "<script>document.write(maskPassword('" + dto.getUserPw() + "'));</script>";
     %>
+    
     <p><%=dto.getUserName()%>님의 비밀번호는 <%=maskedPassword%>입니다.</p>
+    
     <%
         }
     %>
