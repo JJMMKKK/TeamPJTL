@@ -11,13 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.dto.DTO;
+import com.dto.memberDTO;
 import com.service.memberService;
 
 @WebServlet("/confirmIdController")
 public class confirmIdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	//confirm_Id.jsp에서 사용
+	//이름 / SSN을 받아서 동일한 유저 정보가 있는지 확인하는 서블릿
+	//일치하면 findUser.jsp로 이동
+	//불일치하면 register_Member.jsp로 이동
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 	}
@@ -33,7 +38,7 @@ public class confirmIdController extends HttpServlet {
 		int ssn2 = Integer.parseInt(request.getParameter("ssn2"));
 
 		memberService serv = new memberService();
-		List<DTO> foundUser = serv.findUserId(userName, ssn1, ssn2);
+		List<memberDTO> foundUser = serv.findUserId(userName, ssn1, ssn2);
 		HttpSession session = request.getSession();
 		if (foundUser != null && !foundUser.isEmpty()) {
 			session.setAttribute("foundUser", foundUser);

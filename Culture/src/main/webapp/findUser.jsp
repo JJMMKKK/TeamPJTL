@@ -1,10 +1,12 @@
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="com.dto.DTO"%>
+<%@page import="com.dto.memberDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
+<!-- 회원가입 도중 기존 유저임이 확인되면 나오는 페이지 -->
 
 <head>
 <meta charset="UTF-8">
@@ -55,17 +57,18 @@
 <body>
 
 	<%
-	List<DTO> list = (List<DTO>) session.getAttribute("foundUser");
-	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		List<memberDTO> list = (List<memberDTO>) session.getAttribute("foundUser");
 	%>
 
 	<h2>찾은 유저 정보</h2>
 	<%
-	for (DTO dto : list) {
+	
+
+		for (memberDTO dto : list) {
 	%>
 	<p><%=dto.getUserName()%>님은 기존 회원이십니다.<br>
 		아이디:	<%=dto.getUserId()%><br>
-		가입일:	<%=dateFormat.format(dto.getUserSignDate())%>
+		가입일:	<%=dto.getUserSignDate()%>
 	</p>
 	<%
 	}

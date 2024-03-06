@@ -5,22 +5,23 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.dto.DTO;
+import com.dto.memberDTO;
 
 public class memberDAO {
 
-	public List<DTO> selectAll(SqlSession session) {
-		List<DTO> list = session.selectList("selectAll");
+	public List<memberDTO> selectAll(SqlSession session) {
+		List<memberDTO> list = session.selectList("selectAll");
+		System.out.println("dao "+ list);
+		return list;
+	}
+	
+	public List<memberDTO> findUserId(SqlSession session, Map<String, Object> dateForFindUserId) {
+		List<memberDTO> list = session.selectList("findUserId", dateForFindUserId);
 		return list;
 	}
 
-	public List<DTO> findUserId(SqlSession session, Map<String, Object> dateForFindUserId) {
-		List<DTO> list = session.selectList("findUserId", dateForFindUserId);
-		return list;
-	}
-
-	public List<DTO> findUserPW(SqlSession session, Map<String, Object> dataForFindUserPW) {
-		List<DTO> list = session.selectList("findUserPW", dataForFindUserPW);
+	public List<memberDTO> findUserPW(SqlSession session, Map<String, Object> dataForFindUserPW) {
+		List<memberDTO> list = session.selectList("findUserPW", dataForFindUserPW);
 		return list;
 	}
 
@@ -44,13 +45,12 @@ public class memberDAO {
 		}
 	}
 
-	public int insertNewMember(SqlSession session, DTO dto) {
-		System.out.println(dto);
+	public int insertNewMember(SqlSession session, memberDTO dto) {
 		int num = session.insert("insertNewMember", dto);
 		return num;
 	}
 
-	public static boolean isUserPNDuplicate(SqlSession session, Map<String, Integer> dataForFindExistPN) {
+	public static boolean isUserPNDuplicate(SqlSession session, Map<String, String> dataForFindExistPN) {
 		try {
 			int num = session.selectOne("isUserPNDuplicate", dataForFindExistPN);
 			return num > 0;
@@ -80,8 +80,8 @@ public class memberDAO {
 		}
 	}
 
-	public List<DTO> findMemberInfo(SqlSession session, Map<String, String> idPW) {
-		List<DTO> list = session.selectList("findMemberInfo", idPW);
+	public List<memberDTO> findMemberInfo(SqlSession session, Map<String, String> idPW) {
+		List<memberDTO> list = session.selectList("findMemberInfo", idPW);
 		return list;
 	}
 	

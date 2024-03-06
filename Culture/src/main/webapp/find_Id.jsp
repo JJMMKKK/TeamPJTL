@@ -3,11 +3,13 @@
 <!DOCTYPE html>
 <html>
 
+<!-- 아이디 찾기 페이지의 jsp -->
+
 <head>
 <meta charset="UTF-8">
 <title>Find ID</title>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
+<script type="text/javascript">
 	$(function() {
 
 		$("#findIdForm").submit(function(event) {

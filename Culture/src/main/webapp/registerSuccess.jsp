@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
+<!-- 회원가입에 성공할 경우, 나타나는 페이지의 jsp -->
+
 <head>
     <meta charset="UTF-8">
     <title>회원가입 성공</title>

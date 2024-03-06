@@ -2,11 +2,13 @@
 <!DOCTYPE html>
 <html>
 
+<!-- 비밀번호 찾기 페이지의 jsp -->
+
 <head>
     <meta charset="UTF-8">
     <title>Find Password</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
+    <script type="text/javascript">
         $(function () {
         	
         	$("#findPWForm").submit(function(event) {

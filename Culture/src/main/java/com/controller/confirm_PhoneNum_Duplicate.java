@@ -14,7 +14,10 @@ import com.service.memberService;
 @WebServlet("/confirm_PhoneNum_Duplicate")
 public class confirm_PhoneNum_Duplicate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+      
+	//register_Member.jsp에서 사용
+	//핸드폰 번호 전체가 동일한 유저 데이터가 있을 경우, 중복 처리를 하는 ajax를 위한 서블릿
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
 
@@ -22,14 +25,15 @@ public class confirm_PhoneNum_Duplicate extends HttpServlet {
 
 		memberService serv = new memberService();
 		
+		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
+		
         PrintWriter out = response.getWriter();
 
         try {
-        	int userPhoneNum1 = Integer.parseInt(request.getParameter("userPhoneNum1"));
-        	int userPhoneNum2 = Integer.parseInt(request.getParameter("userPhoneNum2"));
-        	int userPhoneNum3 = Integer.parseInt(request.getParameter("userPhoneNum3"));
-
+        	String userPhoneNum1 = request.getParameter("userPhoneNum1");
+        	String userPhoneNum2 = request.getParameter("userPhoneNum2");
+        	String userPhoneNum3 = request.getParameter("userPhoneNum3");
 
             boolean isDuplicate = serv.isUserPNDuplicate(userPhoneNum1, userPhoneNum2, userPhoneNum3);
 

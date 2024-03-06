@@ -11,9 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.config.MySqlSessionFactory;
 
-/**
- * Servlet implementation class LoginForm_Actice
- */
+//Starting Point
 @WebServlet("/LoginForm_Active")
 public class LoginForm_Active extends HttpServlet {
        
@@ -23,7 +21,9 @@ public class LoginForm_Active extends HttpServlet {
 		System.out.println("LoginForm_Active");
 		response.sendRedirect("loginForm.html");
 	
+		
+		
+		
+		
 	}
-
-
 }

@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 
+<!-- 회원가입을 위한 약관에 동의하는 페이지.jsp -->
+
 <head>
 <meta charset="UTF-8">
 <title>약관 동의 페이지</title>

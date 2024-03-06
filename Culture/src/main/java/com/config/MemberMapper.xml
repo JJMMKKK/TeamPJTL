@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.config.MemberMapper">
 
-	<select id="selectAll" resultType="DTO">
+	<select id="selectAll" resultType="memberDTO">
 		SELECT
 			userId,
 			userPw,
@@ -22,8 +22,10 @@
 		FROM
 			memberDB
 	</select>
+	
+	
 
-	<select id="findUserId" resultType="DTO" parameterType="hashmap">
+	<select id="findUserId" resultType="memberDTO" parameterType="hashmap">
 		SELECT
 			userId,
 			userPw,
@@ -46,7 +48,7 @@
 			AND userSSN2 = #{ssn2}
 	</select>
 
-	<select id="findUserPW" resultType="DTO" parameterType="hashmap">
+	<select id="findUserPW" resultType="memberDTO" parameterType="hashmap">
 		SELECT
 			userId,
 			userPw,
@@ -82,7 +84,7 @@
 		WHERE nickname = #{nickname}
 	</select>
 
-	<insert id="insertNewMember" parameterType="DTO"><!-- 개같은 코드 -->
+	<insert id="insertNewMember" parameterType="memberDTO">
 		INSERT INTO memberDB (
 		userId, userPw, userName, userSSN1, userSSN2, nickname,
 		userGender, userPhoneNum1, userPhoneNum2, userPhoneNum3,
@@ -92,7 +94,7 @@
 		#{userId}, #{userPw}, #{userName}, #{userSSN1}, #{userSSN2},
 		#{nickname}, #{userGender}, #{userPhoneNum1}, #{userPhoneNum2},
 		#{userPhoneNum3}, #{userEmailId}, #{userEmailDomain}, #{userSignDate}
-		);
+		)
 	</insert>
 
 	<select id="isUserPNDuplicate" resultType="int" parameterType="hashmap">
@@ -120,7 +122,7 @@
 			AND userPw = #{userPw}
 	</select>
 	
-	<select id="findMemberInfo" resultType="DTO" parameterType="hashmap">
+	<select id="findMemberInfo" resultType="memberDTO" parameterType="hashmap">
 		SELECT
 			userId,
 			userPw,

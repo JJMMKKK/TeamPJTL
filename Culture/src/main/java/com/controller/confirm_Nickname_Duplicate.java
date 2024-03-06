@@ -15,6 +15,10 @@ import com.service.memberService;
 public class confirm_Nickname_Duplicate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	//**************가끔 작동하지 않는 버그가 발생하기 때문에 수정 필요************
+	//register_Member.jsp에서 사용
+	//닉네임 중복을 확인하는 ajax를 위한 서블릿
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 	}
@@ -24,7 +28,9 @@ public class confirm_Nickname_Duplicate extends HttpServlet {
 		
 		memberService serv = new memberService();
 
+		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
+		
 		PrintWriter out = response.getWriter();
 
 		try {

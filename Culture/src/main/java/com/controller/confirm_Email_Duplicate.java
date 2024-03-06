@@ -9,12 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dto.memberDTO;
 import com.service.memberService;
 
 @WebServlet("/confirm_Email_Duplicate")
 public class confirm_Email_Duplicate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	//register_Member.jsp에서 사용
+	// 이메일 중복 여부를 확인하고 출력하는 ajax를 위한 서블릿
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
 
@@ -22,14 +26,15 @@ public class confirm_Email_Duplicate extends HttpServlet {
 
 		memberService serv = new memberService();
 		
+		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
+		
         PrintWriter out = response.getWriter();
 
         try {
         	String userEmailId = request.getParameter("userEmailId");
         	String userEmailDomain = request.getParameter("userEmailDomain");
-
-
+        	
             boolean isDuplicate = serv.isUserEmailDuplicate(userEmailId, userEmailDomain);
 
             if (isDuplicate) {

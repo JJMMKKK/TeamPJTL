@@ -1,9 +1,11 @@
-<%@page import="com.dto.DTO"%>
+<%@page import="com.dto.memberDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
+<!-- 아이디 찾기에서 아이디를 찾을 경우, 나오는 페이지의 jsp -->
 
 <head>
 <meta charset="UTF-8">
@@ -54,12 +56,14 @@
 <body>
 
 	<%
-	List<DTO> list = (List<DTO>) session.getAttribute("foundUser");
+
+		List<memberDTO> list = (List<memberDTO>) session.getAttribute("foundUser");
 	%>
 
 	<h2>찾은 아이디 정보</h2>
 	<%
-	for (DTO dto : list) {
+
+		for (memberDTO dto : list) {
 	%>
 	<p><%=dto.getUserName()%>님의 아이디는
 		<%=dto.getUserId()%>입니다.

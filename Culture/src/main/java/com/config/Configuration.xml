@@ -6,7 +6,7 @@
 
 <properties resource = "com/config/jdbc.properties"/>
 <typeAliases>
-<typeAlias type="com.dto.DTO" alias="DTO"/>
+<typeAlias type="com.dto.memberDTO" alias="memberDTO"/>
 </typeAliases>
 
   <environments default="development">

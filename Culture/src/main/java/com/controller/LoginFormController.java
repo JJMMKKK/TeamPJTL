@@ -11,13 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.dto.DTO;
+import com.dto.memberDTO;
 import com.service.memberService;
 
 @WebServlet("/LoginFormController")
 public class LoginFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	//loginForm.html에서 사용
+	//입력한 아이디와 비밀번호가 일치하는지 확인
+	//일치하면 loginSuccess.jsp(임시)
+	//불일치하면 cantFindUser.jsp로 이동
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
 
@@ -30,7 +35,7 @@ public class LoginFormController extends HttpServlet {
         String userPw = request.getParameter("userPw");
 
         memberService serv = new memberService();
-		List<DTO> foundUser = serv.findMemberInfo(userId, userPw);
+		List<memberDTO> foundUser = serv.findMemberInfo(userId, userPw);
 		HttpSession session = request.getSession();
 		if (foundUser != null && !foundUser.isEmpty()) {
 			session.setAttribute("foundUser", foundUser);

@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
 
+<!-- **********회원가입 자체는 미구현!!******** -->
+<!-- 회원가입을 위한 유저 정보를 입력하는 페이지의 jsp -->
+
 <head>
 <meta charset="UTF-8">
 <title>회원 가입</title>
@@ -101,8 +104,8 @@ button {
 			<label for="userPhoneNum1">핸드폰 번호</label>
 				<div style="display: flex; gap: 5px;">
 					<select id="userPhoneNum1" name="userPhoneNum1" class="phoneNum" required>
-				        <option value="10">010</option>
-				        <option value="11">011</option>
+				        <option value="010">010</option>
+				        <option value="011">011</option>
    					 </select> 
 					<input type="text" id="userPhoneNum2" name="userPhoneNum2" class="phoneNum" required maxlength="4"> 
 					<input type="text" id="userPhoneNum3" name="userPhoneNum3" class="phoneNum" required maxlength="4">

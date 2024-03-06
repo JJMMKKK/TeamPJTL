@@ -1,10 +1,13 @@
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="com.dto.DTO"%>
+<%@page import="com.dto.memberDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
+<!-- 디버그를 위한 회원 리스트 출력 페이지의 jsp -->
+
 <head>
 <meta charset="UTF-8">
 <title>회원 리스트(테스트용)</title>
@@ -66,8 +69,7 @@
 	<hr>
 
 	<%
-	List<DTO> list = (List<DTO>) session.getAttribute("memberList");
-	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+	List<memberDTO> list = (List<memberDTO>) session.getAttribute("memberList");
 	%>
 
 	<table border=1>
@@ -87,7 +89,7 @@
 				<th>가입일</th>
 			</tr>
 			<%
-			for (DTO dto : list) {
+			for (memberDTO dto : list) {
 			%>
 			<tr>
 				<td><%=dto.getUserId()%></td>
@@ -102,8 +104,7 @@
 				<td><%=dto.getUserPhoneNum3()%></td>
 				<td><%=dto.getUserEmailId()%></td>
 				<td><%=dto.getUserEmailDomain()%></td>
-				 <td><%=dateFormat.format(dto.getUserSignDate())%></td>
-				 <td><%=dto.getUserSignDate()%></td>
+				<td><%=dto.getUserSignDate()%></td>
 			</tr>
 			<%
 			}

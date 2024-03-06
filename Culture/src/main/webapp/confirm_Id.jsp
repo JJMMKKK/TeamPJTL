@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 
+<!-- 회원가입 도중 기존 회원인지 이름/SSN을 통해 확인하는 jsp -->
+
 <head>
 <meta charset="UTF-8">
 <title>회원 확인 페이지</title>

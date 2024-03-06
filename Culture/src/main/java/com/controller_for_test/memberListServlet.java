@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.dto.DTO;
+import com.dto.memberDTO;
 import com.service.memberService;
 
 @WebServlet("/memberListServlet")
@@ -23,7 +23,7 @@ public class memberListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		memberService serv = new memberService(); 
-		List<DTO> list = serv.selectAll();
+		List<memberDTO> list = serv.selectAll();
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("memberList", list);

@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 
+<!-- 아이디 찾기 실패 / 비밀번호 찾기 실패 / 모종의 이유로 로그인 진입에는 성공했으나 로그인 자체에는 실패했을 경우 -->
+
 <head>
     <meta charset="UTF-8">
     <title>회원 가입 이력 없음</title>
