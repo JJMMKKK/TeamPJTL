@@ -127,14 +127,10 @@
 			            	userId: userId,
 			            	userPw: userPw,
 			            },
-			            
-			            
 			            beforeSend: function() {
                             // AJAX 요청 전에 수행할 작업 (로딩 표시 등)
                             $("#loginButton").prop("disabled", true); // 버튼 비활성화
                         },
-			            
-			            
 			            success: function(response) {
 			                if (response === "loginFail") {
 			                	errorSpan.text("아이디나 비밀번호를 확인해주세요.");
@@ -146,14 +142,10 @@
 			            error: function(error) {
 			                console.error("아이디, 비밀번호 검사 에러:", error);
 			            },
-			            
-			            
 			            complete: function() {
                             // AJAX 요청 완료 후 수행할 작업 (로딩 표시 해제 등)
                             $("#loginButton").prop("disabled", false); // 버튼 활성화
                         }
-			            
-			            
 			        });
 			    } else {
 			    	errorSpan.text("");

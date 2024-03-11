@@ -6,40 +6,14 @@
 
 	<select id="selectAll" resultType="memberDTO">
 		SELECT
-			userId,
-			userPw,
-			userName,
-			nickname,
-			userSSN1,
-			userSSN2,
-			userGender,
-			userPhoneNum1,
-			userPhoneNum2,
-			userPhoneNum3,
-			userEmailId,
-			userEmailDomain,
-			userSignDate
+			*
 		FROM
 			memberDB
 	</select>
 	
-	
-
 	<select id="findUserId" resultType="memberDTO" parameterType="hashmap">
 		SELECT
-			userId,
-			userPw,
-			userName,
-			nickname,
-			userSSN1,
-			userSSN2,
-			userGender,
-			userPhoneNum1,
-			userPhoneNum2,
-			userPhoneNum3,
-			userEmailId,
-			userEmailDomain,
-			userSignDate
+			*
 		FROM 
 			memberDB
 		WHERE 
@@ -50,19 +24,7 @@
 
 	<select id="findUserPW" resultType="memberDTO" parameterType="hashmap">
 		SELECT
-			userId,
-			userPw,
-			userName,
-			nickname,
-			userSSN1,
-			userSSN2,
-			userGender,
-			userPhoneNum1,
-			userPhoneNum2,
-			userPhoneNum3,
-			userEmailId,
-			userEmailDomain,
-			userSignDate
+			*
 		FROM 
 			memberDB
 		WHERE 
@@ -124,25 +86,50 @@
 	
 	<select id="findMemberInfo" resultType="memberDTO" parameterType="hashmap">
 		SELECT
-			userId,
-			userPw,
-			userName,
-			nickname,
-			userSSN1,
-			userSSN2,
-			userGender,
-			userPhoneNum1,
-			userPhoneNum2,
-			userPhoneNum3,
-			userEmailId,
-			userEmailDomain,
-			userSignDate
+			*
 		FROM
 			memberDB
 		WHERE 
 			userId = #{userId}
 			AND userPw = #{userPw}
-		
 	</select>
+	
+	<select id="findPWbyNickname" resultType="int" parameterType="hashmap">
+		SELECT COUNT(*)
+		FROM memberDB
+		WHERE 
+			userid = #{userid}
+			AND nickname = #{nickname}
+	</select>
+	
+	<select id="findPWbyEmail" resultType="int" parameterType="hashmap">
+		SELECT COUNT(*)
+		FROM memberDB
+		WHERE 
+			userid = #{userid}
+			AND userEmailId = #{userEmailId}
+			AND userEmailDomain = #{userEmailDomain}
+	</select>
+	
+	<select id="findPWbyPhoneNum" resultType="int" parameterType="hashmap">
+		SELECT COUNT(*)
+		FROM memberDB
+		WHERE 
+			userid = #{userid}
+			AND userPhoneNum1 = #{userPhoneNum1}
+			AND userPhoneNum2 = #{userPhoneNum2}
+			AND userPhoneNum3 = #{userPhoneNum3}
+	</select>
+	
+	<select id="selectMemberData" resultType="memberDTO" parameterType="String">
+		SELECT
+			*
+		FROM 
+			memberDB
+		WHERE 
+			userId = #{userId}
+	</select>
+	
+	
 	
 </mapper>

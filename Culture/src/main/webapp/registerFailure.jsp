@@ -48,8 +48,11 @@
 </head>
 
 <body>
+	<% String errorMesg = (String)session.getAttribute("mesg"); %>
+
     <div id="errorMessage">
-        회원가입 실패
+        회원가입 실패<br>
+       	<%= errorMesg %>
     </div>
 
     <div id="sitesShortCut">

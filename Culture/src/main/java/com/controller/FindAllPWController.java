@@ -18,30 +18,24 @@ import com.service.memberService;
 public class FindAllPWController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	//*************미구현 상태****************
-	//found_PW.jsp에서 사용
-	//전체 비밀번호 찾기를 클릭하면, 전체 비밀번호를 찾을 수 있는 find_AllPassword.jsp로 연결하는 서블릿
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		
+		String userId = request.getParameter("userId");
+
+		memberService serv = new memberService();
+		List<memberDTO> list = serv.selectMemberData(userId);
+		System.out.println(list);
+		
 		HttpSession session = request.getSession();
+		session.setAttribute("foundUserInfo", list);
+
+		RequestDispatcher dis = request.getRequestDispatcher("found_All_PW.jsp");
+		dis.forward(request, response);
+		 		 	
 		
-		//**************************************************************
-		List<memberDTO> list = (List<memberDTO>) session.getAttribute("foundUserPW");
-		session.setAttribute("foundUserPW", list);
-		//**************************************************************
-		
-		//**************************************************************
-		RequestDispatcher dis = request.getRequestDispatcher("find_AllPassword.jsp");
-    	dis.forward(request, response);
-    	//**************************************************************
 	}
 }

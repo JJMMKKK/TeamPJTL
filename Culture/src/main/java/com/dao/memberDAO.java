@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -82,6 +83,41 @@ public class memberDAO {
 
 	public List<memberDTO> findMemberInfo(SqlSession session, Map<String, String> idPW) {
 		List<memberDTO> list = session.selectList("findMemberInfo", idPW);
+		return list;
+	}
+
+	public static boolean findPWbyNickname(SqlSession session, HashMap<String, String> nicknameMap) {
+		try {
+			int num = session.selectOne("findPWbyNickname", nicknameMap);
+			return num > 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public static boolean findPWbyPhoneNum(SqlSession session, Map<String, String> phoneNumMap) {
+		try {
+			int num = session.selectOne("findPWbyPhoneNum", phoneNumMap);
+			return num > 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public static boolean findPWbyEmail(SqlSession session, HashMap<String, String> emailMap) {
+		try {
+			int num = session.selectOne("findPWbyEmail", emailMap);
+			return num > 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public List<memberDTO> selectMemberData(SqlSession session, String userId) {
+		List<memberDTO> list = session.selectList("selectMemberData", userId);
 		return list;
 	}
 	

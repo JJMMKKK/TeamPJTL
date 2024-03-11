@@ -56,6 +56,17 @@
             var masked = "*".repeat(password.length - visible);
             return password.slice(0, visible) + masked;
         }
+        
+     	// 전체 비밀번호 찾기 새 창 열기
+         function openAllPWWindow(userId) {
+            var popup = window.open("childWindow_FindAllPassword.jsp", "전체 비밀번호 확인", "width=600,height=300");
+
+            // userId를 자식 창으로 전달
+            popup.onload = function () {
+                popup.setUserInfo(userId);
+            };
+        }
+        
     </script>
 </head>
 
@@ -67,19 +78,25 @@
     <h2>찾은 비밀번호 정보</h2>
     
     <%
-		    //JavaScript 함수는 클라이언트 측에서 실행되므로, Java 코드에서 직접 호출할 수 없기 때문에 scrip 형식
+    		//JavaScript 함수는 클라이언트 측에서 실행되므로, Java 코드에서 직접 호출할 수 없기 때문에 scrip 형식
             for (memberDTO dto : list) {
                 String maskedPassword = "<script>document.write(maskPassword('" + dto.getUserPw() + "'));</script>";
     %>
+			<!-- 자식 창에 전달할 데이터를 숨겨진 input 태그로 설정 -->
+		    <input type="hidden" id="userId" name="userId" value="<%=dto.getUserId()%>">
     
-    <p><%=dto.getUserName()%>님의 비밀번호는 <%=maskedPassword%>입니다.</p>
-    
+    		<p><%=dto.getUserName()%>님의 비밀번호는 <%=maskedPassword%>입니다.</p>
+    		
+    		<button type="button" onclick="openAllPWWindow('<%=dto.getUserId()%>')">
+                <%=dto.getUserName()%>님의 비밀번호 확인
+            </button>
     <%
         }
     %>
     <div>
-        <a href="loginForm.html">로그인</a> | <a href="FindAllPWController">전체 비밀번호 찾기</a>
+        <a href="loginForm.html">로그인</a> 
     </div>
+
 </body>
 
 </html>

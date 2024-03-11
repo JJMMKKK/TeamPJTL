@@ -87,6 +87,7 @@
 				<th>이메일 아이디</th>
 				<th>이메일 도메인</th>
 				<th>가입일</th>
+				<th>유형</th>
 			</tr>
 			<%
 			for (memberDTO dto : list) {
@@ -105,6 +106,7 @@
 				<td><%=dto.getUserEmailId()%></td>
 				<td><%=dto.getUserEmailDomain()%></td>
 				<td><%=dto.getUserSignDate()%></td>
+				<td><%=dto.getUserType()%></td>
 			</tr>
 			<%
 			}
