@@ -20,10 +20,6 @@ public class LoginForm_Active extends HttpServlet {
 		System.out.println(session);
 		System.out.println("LoginForm_Active");
 		response.sendRedirect("loginForm.html");
-	
-		
-		
-		
 		
 	}
 }
