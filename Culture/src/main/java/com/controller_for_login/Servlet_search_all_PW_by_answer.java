@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 import com.dto.memberDTO;
 import com.service.memberService;
 
-@WebServlet("/FindAllPWController")
-public class FindAllPWController extends HttpServlet {
+@WebServlet("/Servlet_search_all_PW_by_answer")
+public class Servlet_search_all_PW_by_answer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

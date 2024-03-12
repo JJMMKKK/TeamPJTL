@@ -110,7 +110,7 @@
 
 <body>
     <h2>비밀번호 찾기</h2>
-    <form id="findPWForm" action="FindPWController" method="post">
+    <form id="findPWForm" action="Servlet_search_part_PW_by_ID_Name_SSN" method="post">
         아이디: <input type="text" class="must" id="userId" name="userId"><br>
         이름: <input type="text" class="must" id="userName" name="userName"><br>
         SSN: <input type="number" class="must" id="ssn1" name="ssn1" maxlength="6">

@@ -120,6 +120,11 @@ public class memberDAO {
 		List<memberDTO> list = session.selectList("selectMemberData", userId);
 		return list;
 	}
+
+	public memberDTO selectOne(SqlSession session, String userId) {
+		memberDTO dto = session.selectOne("selectOne", userId);
+		return dto;
+	}
 	
 	
 	

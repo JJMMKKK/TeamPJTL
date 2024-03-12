@@ -11,11 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.service.memberService;
 
-@WebServlet("/confirm_Nickname_Duplicate")
-public class confirm_Nickname_Duplicate extends HttpServlet {
+@WebServlet("/Ajax_check_Nickname_duplicate_for_register")
+public class Ajax_check_Nickname_duplicate_for_register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	//**************가끔 작동하지 않는 버그가 발생하기 때문에 수정 필요************
 	//register_Member.jsp에서 사용
 	//닉네임 중복을 확인하는 ajax를 위한 서블릿
 	

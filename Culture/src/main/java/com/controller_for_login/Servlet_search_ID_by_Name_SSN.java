@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 import com.dto.memberDTO;
 import com.service.memberService;
 
-@WebServlet("/FindIdController")
-public class FindIdController extends HttpServlet {
+@WebServlet("/Servlet_search_ID_by_Name_SSN")
+public class Servlet_search_ID_by_Name_SSN extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	//find_Id.jsp에서 사용

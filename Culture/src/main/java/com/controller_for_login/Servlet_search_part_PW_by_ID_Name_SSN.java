@@ -14,11 +14,11 @@ import javax.servlet.http.HttpSession;
 import com.dto.memberDTO;
 import com.service.memberService;
 
-@WebServlet("/FindPWController")
-public class FindPWController extends HttpServlet {
+@WebServlet("/Servlet_search_part_PW_by_ID_Name_SSN")
+public class Servlet_search_part_PW_by_ID_Name_SSN extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	//found_PW.jsp에서 사용
+	//find_Password.jsp에서 사용
 	//입력한 아이디 / 이름 / SSN이 일치하는지 확인
 	//일치하면 found_PW.jsp로 이동
 	//불일치하면 cantFindUser.jsp로 이동

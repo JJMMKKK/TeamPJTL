@@ -157,4 +157,15 @@ public class memberService {
 		}
 		return list;
 	}
+
+	public memberDTO selectOne(String userId) {
+		memberDTO dto = null;
+		SqlSession session = MySqlSessionFactory.getSqlSession();
+		try {
+			dto = dao.selectOne(session, userId);
+		} finally {
+			session.close();
+		}
+		return dto;
+	}
 }

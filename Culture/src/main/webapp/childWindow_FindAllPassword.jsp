@@ -85,7 +85,7 @@ button:hover {
 			//질문에 대한 답변 타당성 판정
 			$.ajax({
 				type : "POST",
-				url : "confirm_Answer_For_All_Password",
+				url : "Ajax_match_QnA_for_find_all_PW",
 				data : {
 					userInfo : userInfo,
 					answer : answer,
@@ -105,7 +105,7 @@ button:hover {
 		}
 	}
 	function moveToParentPage() {
-		window.opener.location.href = "FindAllPWController?userId=" + userId;
+		window.opener.location.href = "Servlet_search_all_PW_by_answer?userId=" + userId;
         window.close(); 
     }
 	

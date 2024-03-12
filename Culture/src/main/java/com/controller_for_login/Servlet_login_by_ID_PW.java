@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 import com.dto.memberDTO;
 import com.service.memberService;
 
-@WebServlet("/LoginFormController")
-public class LoginFormController extends HttpServlet {
+@WebServlet("/Servlet_login_by_ID_PW")
+public class Servlet_login_by_ID_PW extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	//loginForm.html에서 사용

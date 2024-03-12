@@ -67,7 +67,7 @@ button {
 
 	<div class="container">
 		<h1>회원가입</h1>
-		<form id="registerForm" action="RegisterController"
+		<form id="registerForm" action="Servlet_check_insert_UserData_by_input"
 			method="post">
 			<label for="userId">아이디 (영어 + 숫자, 최소 4글자)</label> 
 				<input type="text" id="userId" name="userId" pattern="[a-zA-Z0-9]{4,}" required readonly>
@@ -117,7 +117,7 @@ button {
 					<input type="text" id="userEmailId" name="userEmailId" class ="userEmail" required>
 						@ 
 					<input type="text" id="userEmailDomain" name="userEmailDomain" class ="userEmail" required> 
-					<select id="domainSelect" name="domainSelect" onchange="domainSelectMethod(this.value)" required>
+					<select id="domainSelect" name="domainSelect" class ="userEmail" onchange="domainSelectMethod(this.value)" required>
 						<option value="naver.com">naver.com</option>
 						<option value="gmail.com">gmail.com</option>
 						<option value="hanmail.net">hanmail.net</option>
@@ -150,7 +150,7 @@ button {
 			
 			$.ajax({
                 type: "POST",
-                url: "confirm_Nickname_Duplicate", 
+                url: "Ajax_check_Nickname_duplicate_for_register", 
                 data: { nickname: nickname },
                 success: function (response) {
                     if (response === "duplicate") {
@@ -189,7 +189,7 @@ button {
 		    if (userPhoneNum1 && userPhoneNum2 && userPhoneNum3) {
 		        $.ajax({
 		            type: "POST",
-		            url: "confirm_PhoneNum_Duplicate", 
+		            url: "Ajax_check_PhoneNum_duplicate_for_register", 
 		            data: {
 		            	userPhoneNum1: userPhoneNum1,
 		            	userPhoneNum2: userPhoneNum2,
@@ -230,7 +230,7 @@ button {
 		    if (userEmailId && userEmailDomain) {
 		        $.ajax({
 		            type: "POST",
-		            url: "confirm_Email_Duplicate", 
+		            url: "Ajax_check_Email_duplicate_for_register", 
 		            data: {
 		            	userEmailId: userEmailId,
 		            	userEmailDomain: userEmailDomain,
@@ -259,7 +259,7 @@ button {
 		    if (userEmailId && userEmailDomain) {
 		        $.ajax({
 		            type: "POST",
-		            url: "confirm_Email_Duplicate", 
+		            url: "Ajax_check_Email_duplicate_for_register", 
 		            data: {
 		            	userEmailId: userEmailId,
 		            	userEmailDomain: userEmailDomain,
@@ -283,9 +283,6 @@ button {
 
 		//submit 제한규칙
 		$("#registerForm").submit(function(event) {
-			
-			
-			
 			
 			return validateForm(event);
 		});

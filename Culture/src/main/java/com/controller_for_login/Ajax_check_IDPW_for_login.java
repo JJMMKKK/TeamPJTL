@@ -11,16 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.service.memberService;
 
-@WebServlet("/confirm_IDPW_login_Possible")
-public class confirm_IDPW_login_Possible extends HttpServlet {
+@WebServlet("/Ajax_check_IDPW_for_login")
+public class Ajax_check_IDPW_for_login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	//loginForm.html에서 사용
 	//로그인 시 부정확한 아이디 / 비밀번호를 입력할 때 발생하는 ajax를 위한 서블릿
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		memberService serv = new memberService();

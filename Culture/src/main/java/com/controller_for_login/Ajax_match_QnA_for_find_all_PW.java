@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 import com.dto.memberDTO;
 import com.service.memberService;
 
-@WebServlet("/confirm_Answer_For_All_Password")
-public class confirm_Answer_For_All_Password extends HttpServlet {
+@WebServlet("/Ajax_match_QnA_for_find_all_PW")
+public class Ajax_match_QnA_for_find_all_PW extends HttpServlet {
        
 	//childWindow_FindAllPassword.html에서 사용
 	//전체 비밀번호 확인을 위한 질문과 대답을 받아와서, DB에 저장된 정보와 일치하면 전체 비밀번호 출력

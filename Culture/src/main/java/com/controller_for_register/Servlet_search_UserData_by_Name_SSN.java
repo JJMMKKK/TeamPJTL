@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 import com.dto.memberDTO;
 import com.service.memberService;
 
-@WebServlet("/confirmIdController")
-public class confirmIdController extends HttpServlet {
+@WebServlet("/Servlet_search_UserData_by_Name_SSN")
+public class Servlet_search_UserData_by_Name_SSN extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	//confirm_Id.jsp에서 사용
@@ -23,10 +23,6 @@ public class confirmIdController extends HttpServlet {
 	//일치하면 findUser.jsp로 이동
 	//불일치하면 register_Member.jsp로 이동
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		

@@ -130,6 +130,13 @@
 			userId = #{userId}
 	</select>
 	
-	
+	<select id="selectOne" resultType="memberDTO" parameterType="memberDTO">
+		SELECT
+			*
+		FROM
+			memberDB
+		WHERE 
+			userId = #{userId}
+	</select>
 	
 </mapper>

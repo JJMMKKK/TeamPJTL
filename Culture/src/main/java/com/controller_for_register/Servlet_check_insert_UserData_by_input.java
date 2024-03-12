@@ -21,8 +21,8 @@ import javax.servlet.http.HttpSession;
 import com.dto.memberDTO;
 import com.service.memberService;
 
-@WebServlet("/RegisterController")
-public class RegisterController extends HttpServlet {
+@WebServlet("/Servlet_check_insert_UserData_by_input")
+public class Servlet_check_insert_UserData_by_input extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	// register_Member.jsp에서 사용
@@ -31,10 +31,6 @@ public class RegisterController extends HttpServlet {
 	// println 이후 insert 기능 수행
 	// 정상적으로 insert가 될 경우, registerSuccess.jsp로 이동
 	// 제대로 insert되지 않을 경우, registerFailure.jsp로 이동
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

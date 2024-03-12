@@ -104,7 +104,7 @@
 
 <body>
 	<h2>아이디 찾기</h2>
-	<form id="findIdForm" action="FindIdController" method="post">
+	<form id="findIdForm" action="Servlet_search_ID_by_Name_SSN" method="post">
 		이름: 	<input type="text" class="must" id="userName" name="userName"><br>
 		SSN: 	<input type="number" class="must" id="ssn1" name="ssn1" maxlength="6"> 
 		- 		<input type="password" class="must"

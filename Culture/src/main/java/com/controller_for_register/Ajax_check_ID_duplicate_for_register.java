@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.service.memberService;
 
-@WebServlet("/confirm_Id_Duplicate")
-public class confirm_Id_Duplicate extends HttpServlet {
+@WebServlet("/Ajax_check_ID_duplicate_for_register")
+public class Ajax_check_ID_duplicate_for_register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	//childWindowConfirmID.html에서 사용
