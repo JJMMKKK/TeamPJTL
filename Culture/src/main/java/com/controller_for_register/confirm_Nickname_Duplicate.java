@@ -1,4 +1,4 @@
-package com.controller;
+package com.controller_for_register;
 
 import java.io.IOException;
 import java.io.PrintWriter;

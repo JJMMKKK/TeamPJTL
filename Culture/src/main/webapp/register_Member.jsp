@@ -222,7 +222,7 @@ button {
 		}
 		
 		//이메일 중복 확인
-		$(".userEmail").on("input", function() {
+		$("#userEmailId").on("input", function() {
 		    var userEmailId = $("#userEmailId").val();
 		    var userEmailDomain = $("#userEmailDomain").val();
 		    var errorSpan = $("#confirmUserEmailError");
@@ -250,9 +250,43 @@ button {
 		    	errorSpan.text("");
 			}
 		});
+		
+		$("#domainSelect").on("change", function() {
+		    var userEmailId = $("#userEmailId").val();
+		    var userEmailDomain = $("#userEmailDomain").val();
+		    var errorSpan = $("#confirmUserEmailError");
+		
+		    if (userEmailId && userEmailDomain) {
+		        $.ajax({
+		            type: "POST",
+		            url: "confirm_Email_Duplicate", 
+		            data: {
+		            	userEmailId: userEmailId,
+		            	userEmailDomain: userEmailDomain,
+		            },
+		            success: function(response) {
+		                if (response === "duplicate") {
+		                	errorSpan.text("이미 사용 중인 이메일입니다.");
+		                } else {
+		                	errorSpan.text("");
+		                }
+		            },
+		            error: function(error) {
+		                console.error("이메일 중복 검사 에러:", error);
+		            }
+		        });
+		    } else {
+		    	errorSpan.text("");
+			}
+		});
+		
 
 		//submit 제한규칙
 		$("#registerForm").submit(function(event) {
+			
+			
+			
+			
 			return validateForm(event);
 		});
 

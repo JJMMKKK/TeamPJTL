@@ -1,4 +1,4 @@
-package com.controller;
+package com.controller_for_register;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,14 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dto.memberDTO;
 import com.service.memberService;
 
-@WebServlet("/confirm_IDPW_login_Possible")
-public class confirm_IDPW_login_Possible extends HttpServlet {
+@WebServlet("/confirm_Email_Duplicate")
+public class confirm_Email_Duplicate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	//loginForm.html에서 사용
-	//로그인 시 부정확한 아이디 / 비밀번호를 입력할 때 발생하는 ajax를 위한 서블릿
+    
+	//register_Member.jsp에서 사용
+	// 이메일 중복 여부를 확인하고 출력하는 ajax를 위한 서블릿
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
@@ -31,16 +32,15 @@ public class confirm_IDPW_login_Possible extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-        	String userId = request.getParameter("userId");
-        	String userPw = request.getParameter("userPw");
+        	String userEmailId = request.getParameter("userEmailId");
+        	String userEmailDomain = request.getParameter("userEmailDomain");
+        	
+            boolean isDuplicate = serv.isUserEmailDuplicate(userEmailId, userEmailDomain);
 
-
-            boolean canLogin = serv.loginPossible(userId, userPw);
-
-            if (canLogin) {
-                out.print("loginSuccess");
+            if (isDuplicate) {
+                out.print("duplicate");
             } else {
-                out.print("loginFail");
+                out.print("not duplicate");
             }
         } catch (Exception e) {
             out.print("error");

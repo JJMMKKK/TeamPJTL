@@ -72,8 +72,7 @@
 	}
 	%>
 	<div>
-		<a href="loginForm.html">로그인</a> | <a href="find_Password.jsp">비밀번호
-			찾기</a>
+		<a href="loginForm.html">로그인</a> | <a href="find_Password.jsp">비밀번호 찾기</a>
 	</div>
 </body>
 

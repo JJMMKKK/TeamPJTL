@@ -1,4 +1,4 @@
-package com.controller;
+package com.controller_for_login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.service.memberService;
 
-@WebServlet("/confirm_PhoneNum_Duplicate")
-public class confirm_PhoneNum_Duplicate extends HttpServlet {
+@WebServlet("/confirm_IDPW_login_Possible")
+public class confirm_IDPW_login_Possible extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      
-	//register_Member.jsp에서 사용
-	//핸드폰 번호 전체가 동일한 유저 데이터가 있을 경우, 중복 처리를 하는 ajax를 위한 서블릿
+       
+	//loginForm.html에서 사용
+	//로그인 시 부정확한 아이디 / 비밀번호를 입력할 때 발생하는 ajax를 위한 서블릿
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
@@ -31,16 +31,16 @@ public class confirm_PhoneNum_Duplicate extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-        	String userPhoneNum1 = request.getParameter("userPhoneNum1");
-        	String userPhoneNum2 = request.getParameter("userPhoneNum2");
-        	String userPhoneNum3 = request.getParameter("userPhoneNum3");
+        	String userId = request.getParameter("userId");
+        	String userPw = request.getParameter("userPw");
 
-            boolean isDuplicate = serv.isUserPNDuplicate(userPhoneNum1, userPhoneNum2, userPhoneNum3);
 
-            if (isDuplicate) {
-                out.print("duplicate");
+            boolean canLogin = serv.loginPossible(userId, userPw);
+
+            if (canLogin) {
+                out.print("loginSuccess");
             } else {
-                out.print("not duplicate");
+                out.print("loginFail");
             }
         } catch (Exception e) {
             out.print("error");

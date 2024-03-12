@@ -52,6 +52,10 @@ button {
 	border: none;
 	cursor: pointer;
 }
+
+button:hover {
+	background-color: #0056b3;
+}
 </style>
 </head>
 
