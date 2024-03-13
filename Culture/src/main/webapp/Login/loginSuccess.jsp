@@ -70,7 +70,7 @@
 
 	<%
 
-		memberDTO dto = (memberDTO) session.getAttribute("memberData");
+		memberDTO dto = (memberDTO) session.getAttribute("loginUser");
 	%>
 
 	<table border=1>
@@ -90,9 +90,7 @@
 				<th>가입일</th>
 				<th>유형</th>
 			</tr>
-			
-						
- 			<tr>
+			<tr>
 				<td><%=dto.getUserId()%></td>
 				<td><%=dto.getUserPw()%></td>
 				<td><%=dto.getUserName()%></td>
@@ -110,9 +108,6 @@
 			</tr>
 	</table>
 	<button onclick="location.href='<%=request.getContextPath()%>/LoginServlet'">로그인폼</button>
-	<div id="sitesShortCut">
-		<a href="<%=request.getContextPath()%>/memberListServlet">디버그용 - 회원리스트</a>
-	</div>
 	<br>
 
 </body>
