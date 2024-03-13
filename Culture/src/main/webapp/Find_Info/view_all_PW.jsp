@@ -5,6 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<!-- 모든 비밀번호를 출력하는 창(종료 창) -->
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
@@ -36,21 +39,17 @@
 </head>
 <body>
 
-<h1>모든 비밀번호 출력</h1>
+<h1>이메일 발송 성공!</h1>
 
 <%
-    List<memberDTO> list = (List<memberDTO>) session.getAttribute("foundUserInfo");
+    memberDTO dto = (memberDTO) request.getAttribute("foundUserInfo");
 %>
 
-<%
-    for (memberDTO dto : list) {
-%>
-    <p><%=dto.getUserName()%>님의 비밀번호는 <%=dto.getUserPw()%>입니다.</p>
-<%
-    }
-%>
+    <p><%=dto.getUserName()%>님의 비밀번호는  
+    <%=dto.getUserEmailId()+"@"+dto.getUserEmailDomain()%>로 전송되었습니다.</p> 
+    <p>확인 후 로그인 부탁드립니다.</p>
 
-<div>
+<div id="sitesShortCut">
     <a href="<%=request.getContextPath()%>/LoginForm_Active">로그인</a> 
 </div>
 

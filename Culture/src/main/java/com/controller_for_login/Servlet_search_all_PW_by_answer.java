@@ -1,7 +1,6 @@
 package com.controller_for_login;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,28 +13,23 @@ import javax.servlet.http.HttpSession;
 import com.dto.memberDTO;
 import com.service.memberService;
 
+//전체 비밀번호 찾기 자식창 --> 전체 비밀번호 출력창
 @WebServlet("/Servlet_search_all_PW_by_answer")
 public class Servlet_search_all_PW_by_answer extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
-		
 		String userId = request.getParameter("userId");
 
 		memberService serv = new memberService();
-		List<memberDTO> list = serv.selectMemberData(userId);
-		System.out.println(list);
+		memberDTO dto = serv.selectMemberData(userId);
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("foundUserInfo", list);
-
-		RequestDispatcher dis = request.getRequestDispatcher("Find_Info/view_all_PW.jsp");
+		request.setAttribute("foundUserInfo", dto);
+																								//디버그 코드************************************************************************
+//																								RequestDispatcher dis = request.getRequestDispatcher("Find_Info/view_all_PW.jsp");
+																								//디버그 코드************************************************************************
+		RequestDispatcher dis = request.getRequestDispatcher("Send_EmailServlet");
 		dis.forward(request, response);
-		 		 	
-		
 	}
 }

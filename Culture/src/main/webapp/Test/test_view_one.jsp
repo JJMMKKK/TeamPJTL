@@ -110,7 +110,9 @@
 			</tr>
 	</table>
 	<button onclick="location.href='<%=request.getContextPath()%>/LoginForm_Active'">로그인폼</button>
-	<a href="<%=request.getContextPath()%>/memberListServlet">디버그용 - 회원리스트</a>
+	<div id="sitesShortCut">
+		<a href="<%=request.getContextPath()%>/memberListServlet">디버그용 - 회원리스트</a>
+	</div>
 	<br>
 
 </body>

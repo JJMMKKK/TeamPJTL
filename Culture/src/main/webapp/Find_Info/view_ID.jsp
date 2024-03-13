@@ -56,22 +56,14 @@
 <body>
 
 	<%
-
-		List<memberDTO> list = (List<memberDTO>) session.getAttribute("foundUser");
+	memberDTO dto = (memberDTO) request.getAttribute("found_userId");
 	%>
 
 	<h2>찾은 아이디 정보</h2>
-	<%
-
-		for (memberDTO dto : list) {
-	%>
 	<p><%=dto.getUserName()%>님의 아이디는
 		<%=dto.getUserId()%>입니다.
 	</p>
-	<%
-	}
-	%>
-	<div>
+	<div id="sitesShortCut">
 		<a href="<%=request.getContextPath()%>/LoginForm_Active">로그인</a> | <a href="<%=request.getContextPath()%>/connect_to_search_PW_by_ID_Name_SSN">비밀번호 찾기</a>
 	</div>
 </body>

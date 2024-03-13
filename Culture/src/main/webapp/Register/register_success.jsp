@@ -44,6 +44,7 @@
         }
     </style>
 
+	<!-- 5초 뒤, 로그인 메인화면으로 이동 -->
     <script type="text/javascript">
         setTimeout(function () {
             window.location.href = "<%=request.getContextPath()%>/LoginForm_Active";

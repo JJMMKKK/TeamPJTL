@@ -86,19 +86,24 @@
 
     <script type="text/javascript">
         $(function() {
+
+        	//모두 동의를 클릭하면 clickAllChk함수 발동(다른 체크박스가 모두 체크)
             $("#allCheckbox").click(function() {
                 clickAllChk(this.checked);
             });
 
+         	// 개별 약관에 대한 체크박스 클릭 시 모두 동의 체크박스 상태 갱신
             $(".checkboxes").click(function() {
                 $("#allCheckbox").prop("checked", $(".checkboxes:checked").length === $(".checkboxes").length);
             });
         });
 
+    	//모두 동의를 클릭하면 clickAllChk함수 발동(다른 체크박스가 모두 체크)
         function clickAllChk(tc) {
             $(".checkboxes").prop("checked", tc);
         }
 
+    	//모두 동의를 제외한 모든 체크박스가 체크되지 않으면 다음 페이지로 이동 불가
         function chkAgreement() {
             if ($(".checkboxes:not(:checked)").length === 0) {
                 alert("약관에 모두 동의하셨습니다. 다음 페이지로 이동합니다.");

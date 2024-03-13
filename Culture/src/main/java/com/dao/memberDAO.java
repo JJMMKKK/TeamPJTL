@@ -16,14 +16,14 @@ public class memberDAO {
 		return list;
 	}
 	
-	public List<memberDTO> findUserId(SqlSession session, Map<String, Object> dateForFindUserId) {
-		List<memberDTO> list = session.selectList("findUserId", dateForFindUserId);
-		return list;
+	public memberDTO findUserId(SqlSession session, Map<String, Object> dateForFindUserId) {
+		memberDTO dto = session.selectOne("findUserId", dateForFindUserId);
+		return dto;
 	}
 
-	public List<memberDTO> findUserPW(SqlSession session, Map<String, Object> dataForFindUserPW) {
-		List<memberDTO> list = session.selectList("findUserPW", dataForFindUserPW);
-		return list;
+	public memberDTO findUserPW(SqlSession session, Map<String, Object> dataForFindUserPW) {
+		memberDTO dto = session.selectOne("findUserPW", dataForFindUserPW);
+		return dto;
 	}
 
 	public static boolean isUserIdDuplicate(SqlSession session, String userId) {
@@ -81,9 +81,9 @@ public class memberDAO {
 		}
 	}
 
-	public List<memberDTO> findMemberInfo(SqlSession session, Map<String, String> idPW) {
-		List<memberDTO> list = session.selectList("findMemberInfo", idPW);
-		return list;
+	public memberDTO findMemberInfo(SqlSession session, Map<String, String> idPW) {
+		memberDTO dto = session.selectOne("findMemberInfo", idPW);
+		return dto;
 	}
 
 	public static boolean findPWbyNickname(SqlSession session, HashMap<String, String> nicknameMap) {
@@ -116,9 +116,9 @@ public class memberDAO {
 		}
 	}
 
-	public List<memberDTO> selectMemberData(SqlSession session, String userId) {
-		List<memberDTO> list = session.selectList("selectMemberData", userId);
-		return list;
+	public memberDTO selectMemberData(SqlSession session, String userId) {
+		memberDTO dto = session.selectOne("selectMemberData", userId);
+		return dto;
 	}
 
 	public memberDTO selectOne(SqlSession session, String userId) {

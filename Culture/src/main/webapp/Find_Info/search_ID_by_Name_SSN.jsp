@@ -30,7 +30,7 @@
 			}
 		})
 
-		//SSN focus
+		//SSN1이 6자리까지 입력했을 경우, SSN2로 focus
 		$("#ssn1").on('input', function() {
 			var maxLength = 6;
 			if ($(this).val().length >= maxLength) {

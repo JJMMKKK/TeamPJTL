@@ -17,17 +17,10 @@ import com.service.memberService;
 @WebServlet("/Ajax_match_QnA_for_find_all_PW")
 public class Ajax_match_QnA_for_find_all_PW extends HttpServlet {
        
-	//childWindow_FindAllPassword.html에서 사용
-	//전체 비밀번호 확인을 위한 질문과 대답을 받아와서, DB에 저장된 정보와 일치하면 전체 비밀번호 출력
-	//일치할 경우, found_PW.jsp가 
-	//불일치할 경우, found_PW.jsp에 ajax처리
-	
+	//전체 비밀번호 출력을 하는 자식창에서 사용하는 비동기처리
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		memberService serv = new memberService();
-		
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
 		
         PrintWriter out = response.getWriter();
 
@@ -36,24 +29,28 @@ public class Ajax_match_QnA_for_find_all_PW extends HttpServlet {
         	String userAnswer = request.getParameter("answer");
              String userId = request.getParameter("userId");
              boolean can_All_PW = false;
-        	
-             System.out.println(confirmUserInfo);
-             System.out.println(userAnswer);
-             System.out.println(userId);
-             
-                 // 선택된 질문에 따라 memberService로 전달
-                 if (confirmUserInfo.equals("nickname")) {
-                     can_All_PW = serv.findPWbyNickname(userAnswer, userId);
-                 } else if (confirmUserInfo.equals("userPhoneNum")) {
-                     can_All_PW = serv.findPWbyPhoneNum(userAnswer, userId);
-                 } else if (confirmUserInfo.equals("userEmail")) {
-                     can_All_PW = serv.findPWbyEmail(userAnswer, userId);
-                 }
-        	
-                 System.out.println(can_All_PW);    
-                 
-            if (can_All_PW == true) {
-                out.print("correct_Answer");
+																		             //디버그 코드*****************************
+																		             System.out.println(confirmUserInfo);
+																		             System.out.println(userAnswer);
+																		             System.out.println(userId);
+																		             //*************************************
+			 // 선택된 질문에 따라 사용되는 Method 변경**************************
+             if (confirmUserInfo.equals("nickname")) {
+                 can_All_PW = serv.findPWbyNickname(userAnswer, userId);
+             } else if (confirmUserInfo.equals("userPhoneNum")) {
+                 can_All_PW = serv.findPWbyPhoneNum(userAnswer, userId);
+             } else if (confirmUserInfo.equals("userEmail")) {
+                 can_All_PW = serv.findPWbyEmail(userAnswer, userId);
+             }
+             // 선택된 질문에 따라 사용되는 Method 변경**************************
+             																		//디버그 코드*****************************                 
+             																		System.out.println(can_All_PW);    
+             																		//*************************************
+             //사용자 ID와 질문과 답변이 일치할 경우, ajax출력
+             if (can_All_PW == true) {
+        		out.print("correct_Answer");
+        
+            //사용자 ID와 질문과 답변이 일치하지 않을 경우, ajax출력																			
             } else if (can_All_PW == false){
                 out.print("wrong_Answer");
             }

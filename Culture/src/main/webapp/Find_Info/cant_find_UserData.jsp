@@ -26,7 +26,7 @@
             color: red;
         }
 
-        #linkSet {
+        #sitesShortCut {
             display: flex;
             justify-content: center;
             gap: 10px;
@@ -48,7 +48,7 @@
     <div class="notFound">
         <h1>회원 가입 이력 없음</h1>
         <p class="mesg">회원 정보가 없습니다. 입력하신 정보를 다시 한번 확인해주세요.</p>
-        <div id="linkSet">
+        <div id="sitesShortCut">
             <a href="<%=request.getContextPath()%>/LoginForm_Active" class="links">로그인</a>
             <a href="<%=request.getContextPath()%>/connect_to_search_ID_by_Name_SSN" class="links">아이디 찾기</a>
             <a href="<%=request.getContextPath()%>/connect_to_search_PW_by_ID_Name_SSN" class="links">비밀번호 찾기</a>

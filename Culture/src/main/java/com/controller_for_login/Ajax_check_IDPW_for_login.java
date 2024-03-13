@@ -11,33 +11,25 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.service.memberService;
 
+//로그인 메인창에서 사용하는 로그인 가능 여부룰 판단하는 비동기 처리
 @WebServlet("/Ajax_check_IDPW_for_login")
 public class Ajax_check_IDPW_for_login extends HttpServlet {
-	private static final long serialVersionUID = 1L;
        
-	//loginForm.html에서 사용
-	//로그인 시 부정확한 아이디 / 비밀번호를 입력할 때 발생하는 ajax를 위한 서블릿
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		memberService serv = new memberService();
-		
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
-		
         PrintWriter out = response.getWriter();
 
+        //유저 아이디와 패스워드가 DB정보와 일치하는지 검증
         try {
         	String userId = request.getParameter("userId");
         	String userPw = request.getParameter("userPw");
 
-
             boolean canLogin = serv.loginPossible(userId, userPw);
 
-            if (canLogin) {
-                out.print("loginSuccess");
-            } else {
-                out.print("loginFail");
+            //일치할 경우
+            if (!canLogin) {
+            	out.print("loginFail");                
             }
         } catch (Exception e) {
             out.print("error");

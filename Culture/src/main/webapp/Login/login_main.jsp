@@ -114,13 +114,23 @@
     <script type="text/javascript">
         $(function () {
 			
+        	var currentAjaxRequest = null;
+    		
+        	//로그인 전송을 시도할 경우, 발동
 			$("#loginForm").on("submit", function(event) {
 				event.preventDefault(); // 폼이 서버로 전송되지 않도록 기본 동작을 막음
 
+	   			// 이전 Ajax 요청이 진행 중이라면 취소(4면 요청이 완료되었음을 의미)
+    		    if (currentAjaxRequest && currentAjaxRequest.readyState !== 4) {
+    		        //현재 진행중인 ajax요청을 중단
+    		    	currentAjaxRequest.abort();
+    		    }
+				
 			    var userId = $("#userId").val();
 			    var userPw = $("#userPw").val();
 			    var errorSpan = $("#confirmUserIdPwError");
-			
+
+			    //아이디와 비밀번호를 모두 입력한 경우
 			    if (userId && userPw) {
 			        $.ajax({
 			            type: "POST",
@@ -129,13 +139,19 @@
 			            	userId: userId,
 			            	userPw: userPw,
 			            },
+			            
 			            beforeSend: function() {
                             // AJAX 요청 전에 수행할 작업 (로딩 표시 등)
                             $("#loginButton").prop("disabled", true); // 버튼 비활성화
                         },
-			            success: function(response) {
+			           
+                        success: function(response) {
+			            	
+			            	// 입력한 아이디와 비밀번호가 DB 정보와 일치하지 않을 경우, ajax 출력
 			                if (response === "loginFail") {
 			                	errorSpan.text("아이디나 비밀번호를 확인해주세요.");
+			                	
+			              	// 입력한 아이디와 비밀번호가 DB 정보와 일치할 경우, submit 정상 작동
 			                } else {
 			                	errorSpan.text("");
 			                	$("#loginForm")[0].submit();
@@ -144,6 +160,7 @@
 			            error: function(error) {
 			                console.error("아이디, 비밀번호 검사 에러:", error);
 			            },
+			          
 			            complete: function() {
                             // AJAX 요청 완료 후 수행할 작업 (로딩 표시 해제 등)
                             $("#loginButton").prop("disabled", false); // 버튼 활성화
@@ -152,31 +169,25 @@
 			    } else {
 			    	errorSpan.text("");
 				}
-			});
-			
-			$("#loginForm").submit(function(event) {
-				return validateForm(event);
-			});
-			
-            function validateForm(event) {
-                var userId = $("#userId").val();
+			    
+			    var userId = $("#userId").val();
                 var userPw = $("#userPw").val();
 
-                // ID 공백 여부
+                // ID 공백 여부 확인
                 if (userId.trim() === "") {
                     alert("아이디를 입력하세요");
                     event.preventDefault();
                     return false;
                 }
 
-                // PW 공백 여부
+                // PW 공백 여부 확인
                 if (userPw.trim() === "") {
                     alert("비밀번호를 입력하세요");
                     event.preventDefault();
                     return false;
                 }
                 
-                //아이디 및 비밀번호 존재 여부
+                //에러 메세지가 있는지 확인
 				if($("#confirmUserIdPwError").text() != ""){
 					event.preventDefault();
 					$("#userId").focus();
@@ -184,19 +195,16 @@
 				}
 					
 				return true;
-                
-            };
-
-            // PW visible
+				
+			});	//$("#loginForm").on("submit", function(event)
+			
+					
+            //비밀번호를 볼 수 있도록 해주는 method
             $("#showPasswd").click(function () {
                 var showPW = $("#userPw");
-                if (showPW.attr("type") === "password") {
-                    showPW.attr("type", "text");
-                } else {
-                    showPW.attr("type", "password");
-                }
+                showPW.attr("type", showPW.attr("type") == "password" ? "text" : "password");
             });
-        });
+        });	//$("#showPasswd").click(function ()
     </script>
 </head>
 

@@ -14,36 +14,31 @@ import javax.servlet.http.HttpSession;
 import com.dto.memberDTO;
 import com.service.memberService;
 
+//회원가입 2단계 기존 유저인지 확인하는 서블릿
 @WebServlet("/Servlet_search_UserData_by_Name_SSN")
 public class Servlet_search_UserData_by_Name_SSN extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-	//confirm_Id.jsp에서 사용
-	//이름 / SSN을 받아서 동일한 유저 정보가 있는지 확인하는 서블릿
-	//일치하면 findUser.jsp로 이동
-	//불일치하면 register_Member.jsp로 이동
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
 		
 		String userName = request.getParameter("userName");
 		int ssn1 = Integer.parseInt(request.getParameter("ssn1"));
 		int ssn2 = Integer.parseInt(request.getParameter("ssn2"));
 
 		memberService serv = new memberService();
-		List<memberDTO> foundUser = serv.findUserId(userName, ssn1, ssn2);
-		HttpSession session = request.getSession();
-		if (foundUser != null && !foundUser.isEmpty()) {
-			session.setAttribute("foundUser", foundUser);
+		memberDTO dto = serv.findUserId(userName, ssn1, ssn2);
+
+		//이름과 SSN이 모두 일치하는 DB정보가 있을 경우, 기존 유저 있음 jsp로 이동
+		if (dto != null) {
+			request.setAttribute("foundUser", dto);
 			RequestDispatcher dis = request.getRequestDispatcher("Register/view_exist_UserData.jsp");
 			dis.forward(request, response);
+			
+		//이름과 SSN이 모두 일치하는 DB정보가 없을 경우, 회원가입 3단계로 이동
 		} else {
-			session.setAttribute("userName", userName);
-			session.setAttribute("ssn1", ssn1);
-			session.setAttribute("ssn2", ssn2);
+			request.setAttribute("userName", userName);
+			request.setAttribute("ssn1", ssn1);
+			request.setAttribute("ssn2", ssn2);
 			RequestDispatcher dis = request.getRequestDispatcher("Register/register_member.jsp");
 			dis.forward(request, response);
 		}

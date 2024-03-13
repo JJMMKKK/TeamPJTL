@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 
-<!-- 회원가입 도중 기존 회원인지 이름/SSN을 통해 확인하는 jsp -->
+<!-- 회원가입 2단계에서 기존 회원인지 이름/SSN을 통해 확인하는 jsp -->
 
 <head>
 <meta charset="UTF-8">
@@ -95,7 +95,7 @@ button:hover {
     				return false;
     			}
         		
-        		//SSN2 1번 번호 확인 + 길이 확인
+        		//SSN2의 첫 숫자 확인(1~4) + 길이 확인
         		var ssn2FirstNum = parseInt($("#ssn2").val().charAt(0));
         		if (ssn2FirstNum < 1 || ssn2FirstNum > 4 || $("#ssn2").val().length != 7) {
         			alert("주민등록번호를 확인해주세요");
@@ -106,7 +106,7 @@ button:hover {
     			
     		})
 
-    		//SSN focus
+    		//SSN1이 6자리 이상이면 SSN2로 focus
     		$("#ssn1").on('input', function() {
     			var maxLength = 6;
     			if ($(this).val().length >= maxLength) {

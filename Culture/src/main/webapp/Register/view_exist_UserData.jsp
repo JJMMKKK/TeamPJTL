@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 
-<!-- 회원가입 도중 기존 유저임이 확인되면 나오는 페이지 -->
+<!-- 회원가입 2단계에서 기존 유저임이 확인되면 나오는 페이지 -->
 
 <head>
 <meta charset="UTF-8">
@@ -57,22 +57,14 @@
 <body>
 
 	<%
-		List<memberDTO> list = (List<memberDTO>) session.getAttribute("foundUser");
+	memberDTO dto = (memberDTO) request.getAttribute("foundUser");
 	%>
 
 	<h2>찾은 유저 정보</h2>
-	<%
-	
-
-		for (memberDTO dto : list) {
-	%>
 	<p><%=dto.getUserName()%>님은 기존 회원이십니다.<br>
 		아이디:	<%=dto.getUserId()%><br>
 		가입일:	<%=dto.getUserSignDate()%>
 	</p>
-	<%
-	}
-	%>
 	<div>
 		<a href="<%=request.getContextPath()%>/LoginForm_Active">로그인</a> | 
 		<a href="<%=request.getContextPath()%>/connect_to_search_PW_by_ID_Name_SSN">비밀번호 찾기</a>

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//아이디 찾기 기능 연결
 @WebServlet("/connect_to_search_ID_by_Name_SSN")
 public class connect_to_search_ID_by_Name_SSN extends HttpServlet {
 

@@ -26,36 +26,36 @@ public class memberService {
 		return list;
 	}
 
-	public List<memberDTO> findUserId(String userName, int ssn1, int ssn2) {
+	public memberDTO findUserId(String userName, int ssn1, int ssn2) {
 		Map<String, Object> dataForFindUserId = new HashMap<>();
 		dataForFindUserId.put("userName", userName);
 		dataForFindUserId.put("ssn1", ssn1);
 		dataForFindUserId.put("ssn2", ssn2);
 
-		List<memberDTO> list = null;
+		memberDTO dto = null;
 		SqlSession session = MySqlSessionFactory.getSqlSession();
 		try {
-			list = dao.findUserId(session, dataForFindUserId);
+			dto = dao.findUserId(session, dataForFindUserId);
 		} finally {
 			session.close();
 		}
-		return list;
+		return dto;
 	}
 
-	public List<memberDTO> findUserPW(String userId, String userName, int ssn1, int ssn2) {
+	public memberDTO findUserPW(String userId, String userName, int ssn1, int ssn2) {
 		Map<String, Object> dataForFindUserPW = new HashMap<>();
-		dataForFindUserPW.put("userId", userId);
-		dataForFindUserPW.put("userName", userName);
-		dataForFindUserPW.put("ssn1", ssn1);
-		dataForFindUserPW.put("ssn2", ssn2);
-		List<memberDTO> list = null;
+			dataForFindUserPW.put("userId", userId);
+			dataForFindUserPW.put("userName", userName);
+			dataForFindUserPW.put("ssn1", ssn1);
+			dataForFindUserPW.put("ssn2", ssn2);
+			memberDTO dto = null;
 		SqlSession session = MySqlSessionFactory.getSqlSession();
 		try {
-			list = dao.findUserPW(session, dataForFindUserPW);
+			dto = dao.findUserPW(session, dataForFindUserPW);
 		} finally {
 			session.close();
 		}
-		return list;
+		return dto;
 	}
 
 	public static boolean isUserIdDuplicate(String userId) {
@@ -105,18 +105,18 @@ public class memberService {
 		return memberDAO.loginPossible(session, dataForLogin);
 	}
 
-	public List<memberDTO> findMemberInfo(String userId, String userPw) {
+	public memberDTO findMemberInfo(String userId, String userPw) {
 		Map<String, String> idPW = new HashMap<>();
 		idPW.put("userId", userId);
 		idPW.put("userPw", userPw);
-		List<memberDTO> list = null;
+		memberDTO dto = null;
 		SqlSession session = MySqlSessionFactory.getSqlSession();
 		try {
-			list = dao.findMemberInfo(session, idPW);
+			dto = dao.findMemberInfo(session, idPW);
 		} finally {
 			session.close();
 		}
-		return list;
+		return dto;
 	}
 
 	public boolean findPWbyNickname(String userAnswer, String userid) {
@@ -147,15 +147,15 @@ public class memberService {
 		return memberDAO.findPWbyEmail(session, emailMap);
 	}
 
-	public List<memberDTO> selectMemberData(String userId) {
-		List<memberDTO> list = null;
+	public memberDTO selectMemberData(String userId) {
+		memberDTO dto = null;
 		SqlSession session = MySqlSessionFactory.getSqlSession();
 		try {
-			list = dao.selectMemberData(session, userId);
+			dto = dao.selectMemberData(session, userId);
 		} finally {
 			session.close();
 		}
-		return list;
+		return dto;
 	}
 
 	public memberDTO selectOne(String userId) {

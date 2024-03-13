@@ -12,23 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.dto.memberDTO;
 import com.service.memberService;
 
+//회원가입 3단계에서 이메일 중복 여부를 확인하는 비동기 처리
 @WebServlet("/Ajax_check_Email_duplicate_for_register")
 public class Ajax_check_Email_duplicate_for_register extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-    
-	//register_Member.jsp에서 사용
-	// 이메일 중복 여부를 확인하고 출력하는 ajax를 위한 서블릿
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		memberService serv = new memberService();
-		
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
-		
         PrintWriter out = response.getWriter();
 
         try {
@@ -37,11 +27,10 @@ public class Ajax_check_Email_duplicate_for_register extends HttpServlet {
         	
             boolean isDuplicate = serv.isUserEmailDuplicate(userEmailId, userEmailDomain);
 
+            //이메일 전체와 일치하는 DB 정보가 있는 경우, 중복 출력
             if (isDuplicate) {
                 out.print("duplicate");
-            } else {
-                out.print("not duplicate");
-            }
+			}
         } catch (Exception e) {
             out.print("error");
             e.printStackTrace();

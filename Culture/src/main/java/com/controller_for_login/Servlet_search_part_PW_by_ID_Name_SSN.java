@@ -14,38 +14,31 @@ import javax.servlet.http.HttpSession;
 import com.dto.memberDTO;
 import com.service.memberService;
 
+//비밀번호 찾기(일부) 페이지 --> 출력
 @WebServlet("/Servlet_search_part_PW_by_ID_Name_SSN")
 public class Servlet_search_part_PW_by_ID_Name_SSN extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-	//find_Password.jsp에서 사용
-	//입력한 아이디 / 이름 / SSN이 일치하는지 확인
-	//일치하면 found_PW.jsp로 이동
-	//불일치하면 cantFindUser.jsp로 이동
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
 		
 		String userId = request.getParameter("userId");
 		String userName = request.getParameter("userName");
 		int ssn1 = Integer.parseInt(request.getParameter("ssn1"));
 		int ssn2 = Integer.parseInt(request.getParameter("ssn2"));
 		
-
 		memberService serv = new memberService();
-		List<memberDTO> foundUserPW = serv.findUserPW(userId, userName, ssn1, ssn2);
+		memberDTO dto = serv.findUserPW(userId, userName, ssn1, ssn2);
+
 		HttpSession session = request.getSession();
-		    if (foundUserPW != null && !foundUserPW.isEmpty()) {
-		    	session.setAttribute("foundUserPW", foundUserPW);
-		    	RequestDispatcher dis = request.getRequestDispatcher("Find_Info/view_part_PW.jsp");
-		    	dis.forward(request, response);
-		    } else {
-		        response.sendRedirect("Find_Info/cant_find_UserData.jsp");
-		    }
-		}
+
+		//입력한 아이디 / 이름 / SSN이 일치하면 비밀번호(일부) 출력
+		if (dto != null) {
+			request.setAttribute("foundUserPW", dto);
+	    	RequestDispatcher dis = request.getRequestDispatcher("Find_Info/view_part_PW.jsp");
+	    	dis.forward(request, response);
+
+		//불일치하면 유저 미확인 창으로 연경
+		} else {
+	        response.sendRedirect("Find_Info/cant_find_UserData.jsp");
+	    }
+	}
 }

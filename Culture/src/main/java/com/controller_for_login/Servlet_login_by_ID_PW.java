@@ -14,36 +14,29 @@ import javax.servlet.http.HttpSession;
 import com.dto.memberDTO;
 import com.service.memberService;
 
+//로그인 메인에서 사용하는 로그인 기능(임시 코드)
 @WebServlet("/Servlet_login_by_ID_PW")
 public class Servlet_login_by_ID_PW extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-	//loginForm.html에서 사용
-	//입력한 아이디와 비밀번호가 일치하는지 확인
-	//일치하면 loginSuccess.jsp(임시)
-	//불일치하면 cantFindUser.jsp로 이동
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
 
         String userId = request.getParameter("userId");
         String userPw = request.getParameter("userPw");
 
         memberService serv = new memberService();
-		List<memberDTO> foundUser = serv.findMemberInfo(userId, userPw);
+		memberDTO dto = serv.findMemberInfo(userId, userPw);
+
 		HttpSession session = request.getSession();
-		if (foundUser != null && !foundUser.isEmpty()) {
-			session.setAttribute("foundUser", foundUser);
+
+		//아이디와 비밀번호가 DB에 일치하는 유저가 있을 경우, 유저 전체 정보 출력
+		if (dto != null) {
+			session.setAttribute("loginUser", dto);
 			RequestDispatcher dis = request.getRequestDispatcher("Login/login_success.jsp");
 			dis.forward(request, response);
+		
+		//아이디와 비밀번호가 DB에 일치하는 유저가 없을 경우, 유저 확인 불가로 연결**********************************
 		} else {
-			RequestDispatcher dis = request.getRequestDispatcher("Find_Info/cant_find_UserData.jsp");
-			dis.forward(request, response);
+			response.sendRedirect("Find_Info/cant_find_UserData.jsp");
 		}
-	
-	
 	}
-
 }

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//회원가입 1단계 약관 동의 단계 연결
 @WebServlet("/connect_to_register_agree_terms")
 public class connect_to_register_agree_terms extends HttpServlet {
 	

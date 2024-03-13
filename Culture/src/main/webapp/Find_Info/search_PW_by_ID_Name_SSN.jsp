@@ -12,7 +12,7 @@
         $(function () {
         	
         	$("#findPWForm").submit(function(event) {
-        		//아이디 공백 여부
+        		//아이디 공백 여부 확인
         		if ($("#userId").val().trim() === "") {
     				alert("아이디를 확인해주세요");
     				event.preventDefault();
@@ -20,7 +20,7 @@
     				return false;
     			}
     			
-        		//이름 공백 확인
+        		//이름 공백 여부 확인
         		if ($("#userName").val().trim() === "") {
     				alert("이름를 확인해주세요");
     				event.preventDefault();
@@ -28,7 +28,7 @@
     				return false;
     			}
     			
-        		//SSN 길이 확인
+        		//SSN 길이 여부 확인
     			if ($("#ssn1").val().length != 6 || $("#ssn2").val().length != 7) {
     				alert("주민등록번호를 확인해주세요");
     				event.preventDefault();
@@ -37,7 +37,7 @@
     			}
     		})
 
-    		//SSN focus
+    		//SSN1이 6자리까지 입력했을 경우, SSN2로 focus
     		$("#ssn1").on('input', function() {
     			var maxLength = 6;
     			if ($(this).val().length >= maxLength) {

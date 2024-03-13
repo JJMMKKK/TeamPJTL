@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 
-<!-- 회원가입에서 아이디 중복 확인하는 페이지의 html -->
+<!-- 회원가입 3단계의 자식창으로 아이디 중복 확인하는 페이지의 html -->
 
 <head>
     <meta charset="UTF-8">
@@ -68,7 +68,7 @@
     <form id="confirmForm">
         <label for="confirmUserId">아이디 (영어 + 숫자, 최소 4글자):</label>
         <input type="text" id="confirmUserId" name="confirmUserId" pattern="[a-zA-Z0-9]{4,}" required>
-        <button type="button" onclick="checkDuplicate()">확인</button><br>
+        <button id="check_id" type="button" onclick="checkDuplicate()">확인</button><br>
         <span id="confirmIdError"></span>
     </form>
 
@@ -78,7 +78,7 @@
             var userId = $("#confirmUserId").val();
             var errorSpan = $("#confirmIdError");
 
-			//아이디 생성 규칙
+			//아이디 생성 규칙(영어/숫자로 4글자 이상)
             var regex = /^[a-zA-Z0-9]{4,}$/;
             if (!regex.test(userId)) {
                 errorSpan.text("아이디는 영어와 숫자로 4글자 이상이어야 합니다.");
@@ -91,9 +91,19 @@
                 type: "POST",
                 url: "<%=request.getContextPath()%>/Ajax_check_ID_duplicate_for_register", 
                 data: { userId: userId },
+                
+                beforeSend: function() {
+                    // AJAX 요청 전에 수행할 작업 (로딩 표시 등)
+                    $("#check_id").prop("disabled", true); // 버튼 비활성화
+                },
+                
                 success: function (response) {
+                	
+                	//아이디가 중복일 경우, ajax 출력
                     if (response === "duplicate") {
                         errorSpan.text("이미 사용 중인 아이디입니다.");
+                    
+                    //아이디가 중복이 아닐 경우, 입력된 아이디를 부모창의 아이디 입력칸으로 옮기고, 자식창 닫기
                     } else {
                         window.opener.$("#userId").val(userId);
                         window.close();
@@ -101,6 +111,11 @@
                 },
                 error: function (error) {
                     console.error("아이디 중복 검사 에러:", error);
+                },
+                
+                complete: function() {
+                    // AJAX 요청 완료 후 수행할 작업 (로딩 표시 해제 등)
+                    $("#check_id").prop("disabled", false); // 버튼 활성화
                 }
             });
         }

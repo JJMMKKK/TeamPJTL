@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//아이디 중복 자식창 MVC용(미구현)
 @WebServlet("/connect_to_child_check_ID_dupilicate")
 public class connect_to_child_check_ID_dupilicate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
