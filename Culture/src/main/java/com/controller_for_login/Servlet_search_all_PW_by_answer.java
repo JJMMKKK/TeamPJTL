@@ -33,7 +33,7 @@ public class Servlet_search_all_PW_by_answer extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("foundUserInfo", list);
 
-		RequestDispatcher dis = request.getRequestDispatcher("found_All_PW.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("Find_Info/view_all_PW.jsp");
 		dis.forward(request, response);
 		 		 	
 		

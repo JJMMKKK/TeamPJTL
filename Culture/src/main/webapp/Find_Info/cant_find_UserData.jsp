@@ -49,10 +49,10 @@
         <h1>회원 가입 이력 없음</h1>
         <p class="mesg">회원 정보가 없습니다. 입력하신 정보를 다시 한번 확인해주세요.</p>
         <div id="linkSet">
-            <a href="loginForm.html" class="links">로그인</a>
-            <a href="find_Id.jsp" class="links">아이디 찾기</a>
-            <a href="find_Password.jsp" class="links">비밀번호 찾기</a>
-            <a href="register_Term.jsp" class="links">회원가입</a>
+            <a href="<%=request.getContextPath()%>/LoginForm_Active" class="links">로그인</a>
+            <a href="<%=request.getContextPath()%>/connect_to_search_ID_by_Name_SSN" class="links">아이디 찾기</a>
+            <a href="<%=request.getContextPath()%>/connect_to_search_PW_by_ID_Name_SSN" class="links">비밀번호 찾기</a>
+            <a href="<%=request.getContextPath()%>/connect_to_register_agree_terms" class="links">회원가입</a>
         </div>
     </div>
 </body>

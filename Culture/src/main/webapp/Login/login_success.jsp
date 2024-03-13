@@ -6,11 +6,11 @@
 <!DOCTYPE html>
 <html>
 
-<!-- 디버그를 위한 회원 리스트 출력 페이지의 jsp -->
+<!-- 디버그를 위한 로그인 성공하면 나오는 페이지 -->
 
 <head>
 <meta charset="UTF-8">
-<title>회원 리스트(테스트용)</title>
+<title>로그인 회원 정보 페이지</title>
 
  <style>
         body {
@@ -65,11 +65,12 @@
 </head>
 <body>
 
-	<h1>[회원 목록]</h1>
+	<h1>[회원 정보]</h1>
 	<hr>
 
 	<%
-	List<memberDTO> list = (List<memberDTO>) session.getAttribute("memberList");
+
+		List<memberDTO> list = (List<memberDTO>) session.getAttribute("foundUser");
 	%>
 
 	<table border=1>
@@ -90,7 +91,8 @@
 				<th>유형</th>
 			</tr>
 			<%
-			for (memberDTO dto : list) {
+
+				for (memberDTO dto : list) {
 			%>
 			<tr>
 				<td><%=dto.getUserId()%></td>
@@ -105,14 +107,14 @@
 				<td><%=dto.getUserPhoneNum3()%></td>
 				<td><%=dto.getUserEmailId()%></td>
 				<td><%=dto.getUserEmailDomain()%></td>
-				<td><%=dto.getUserSignDate()%></td>
-				<td><%=dto.getUserType()%></td>
+				 <td><%=dto.getUserSignDate()%></td>
+				 <td><%=dto.getUserType()%></td>
 			</tr>
 			<%
 			}
 			%>
 	</table>
-	<button onclick="location.href='loginForm.html'">로그인폼</button>
+	<button onclick="location.href='<%=request.getContextPath()%>/LoginForm_Active'">로그인폼</button>
 	<br>
 
 </body>

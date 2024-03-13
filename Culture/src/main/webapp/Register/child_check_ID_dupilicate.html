@@ -87,7 +87,7 @@
 			//아이디 중복 체크
             $.ajax({
                 type: "POST",
-                url: "Ajax_check_ID_duplicate_for_register", 
+                url: "<%=request.getContextPath()%>/Ajax_check_ID_duplicate_for_register", 
                 data: { userId: userId },
                 success: function (response) {
                     if (response === "duplicate") {

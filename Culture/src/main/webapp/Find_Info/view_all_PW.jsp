@@ -36,7 +36,7 @@
 </head>
 <body>
 
-<h1>모든 비밀번호 출력!</h1>
+<h1>모든 비밀번호 출력</h1>
 
 <%
     List<memberDTO> list = (List<memberDTO>) session.getAttribute("foundUserInfo");
@@ -51,7 +51,7 @@
 %>
 
 <div>
-    <a href="loginForm.html">로그인</a> 
+    <a href="<%=request.getContextPath()%>/LoginForm_Active">로그인</a> 
 </div>
 
 </body>

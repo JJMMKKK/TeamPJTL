@@ -9,12 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/connect_to_search_PW_by_ID_Name_SSN")
 public class connect_to_search_PW_by_ID_Name_SSN extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.sendRedirect("Find_Info/search_PW_by_ID_Name_SSN.jsp");
+		
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
-
 }

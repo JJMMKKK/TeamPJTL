@@ -72,7 +72,7 @@
 	}
 	%>
 	<div>
-		<a href="loginForm.html">로그인</a> | <a href="find_Password.jsp">비밀번호 찾기</a>
+		<a href="<%=request.getContextPath()%>/LoginForm_Active">로그인</a> | <a href="<%=request.getContextPath()%>/connect_to_search_PW_by_ID_Name_SSN">비밀번호 찾기</a>
 	</div>
 </body>
 

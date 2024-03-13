@@ -42,10 +42,10 @@ public class Servlet_search_part_PW_by_ID_Name_SSN extends HttpServlet {
 		HttpSession session = request.getSession();
 		    if (foundUserPW != null && !foundUserPW.isEmpty()) {
 		    	session.setAttribute("foundUserPW", foundUserPW);
-		    	RequestDispatcher dis = request.getRequestDispatcher("found_PW.jsp");
+		    	RequestDispatcher dis = request.getRequestDispatcher("Find_Info/view_part_PW.jsp");
 		    	dis.forward(request, response);
 		    } else {
-		        response.sendRedirect("cantFindUser.jsp");
+		        response.sendRedirect("Find_Info/cant_find_UserData.jsp");
 		    }
 		}
 }

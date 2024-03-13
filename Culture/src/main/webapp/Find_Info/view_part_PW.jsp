@@ -50,6 +50,7 @@
         }
     </style>
     
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="text/javascript">
         function maskPassword(password) {
             var visible = Math.ceil(password.length / 2);				// 마스킹할 길이 (비밀번호 길이의 절반)
@@ -59,7 +60,7 @@
         
      	// 전체 비밀번호 찾기 새 창 열기
          function openAllPWWindow(userId) {
-            var popup = window.open("childWindow_FindAllPassword.jsp", "전체 비밀번호 확인", "width=600,height=300");
+            var popup = window.open("<%=request.getContextPath()%>/Find_Info/child_find_all_PW.jsp", "전체 비밀번호 확인", "width=600,height=300");
 
             // userId를 자식 창으로 전달
             popup.onload = function () {
@@ -94,7 +95,7 @@
         }
     %>
     <div>
-        <a href="loginForm.html">로그인</a> 
+        <a href="<%=request.getContextPath()%>/LoginForm_Active">로그인</a> 
     </div>
 
 </body>

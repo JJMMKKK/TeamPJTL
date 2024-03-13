@@ -38,13 +38,13 @@ public class Servlet_search_UserData_by_Name_SSN extends HttpServlet {
 		HttpSession session = request.getSession();
 		if (foundUser != null && !foundUser.isEmpty()) {
 			session.setAttribute("foundUser", foundUser);
-			RequestDispatcher dis = request.getRequestDispatcher("findUser.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("Register/view_exist_UserData.jsp");
 			dis.forward(request, response);
 		} else {
 			session.setAttribute("userName", userName);
 			session.setAttribute("ssn1", ssn1);
 			session.setAttribute("ssn2", ssn2);
-			RequestDispatcher dis = request.getRequestDispatcher("register_Member.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("Register/register_member.jsp");
 			dis.forward(request, response);
 		}
 	}

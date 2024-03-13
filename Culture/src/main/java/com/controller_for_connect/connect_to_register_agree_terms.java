@@ -9,12 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/connect_to_register_agree_terms")
 public class connect_to_register_agree_terms extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.sendRedirect("Register/register_agree_terms.jsp");
+		
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
-
 }

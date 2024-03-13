@@ -41,10 +41,10 @@ public class Servlet_search_ID_by_Name_SSN extends HttpServlet {
 		HttpSession session = request.getSession();
 		    if (foundUser != null && !foundUser.isEmpty()) {
 		    	session.setAttribute("foundUser", foundUser);
-		    	RequestDispatcher dis = request.getRequestDispatcher("found_id.jsp");
+		    	RequestDispatcher dis = request.getRequestDispatcher("Find_Info/view_ID.jsp");
 		    	dis.forward(request, response);
 		    } else {
-		        response.sendRedirect("cantFindUser.jsp");
+		        response.sendRedirect("Find_Info/cant_find_UserData.jsp");
 		    }
 		}
 }

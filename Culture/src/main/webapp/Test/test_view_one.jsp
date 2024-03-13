@@ -70,7 +70,7 @@
 
 	<%
 
-		List<memberDTO> list = (List<memberDTO>) session.getAttribute("foundUser");
+		memberDTO dto = (memberDTO) session.getAttribute("memberData");
 	%>
 
 	<table border=1>
@@ -90,11 +90,9 @@
 				<th>가입일</th>
 				<th>유형</th>
 			</tr>
-			<%
-
-				for (memberDTO dto : list) {
-			%>
-			<tr>
+			
+						
+ 			<tr>
 				<td><%=dto.getUserId()%></td>
 				<td><%=dto.getUserPw()%></td>
 				<td><%=dto.getUserName()%></td>
@@ -110,11 +108,9 @@
 				 <td><%=dto.getUserSignDate()%></td>
 				 <td><%=dto.getUserType()%></td>
 			</tr>
-			<%
-			}
-			%>
 	</table>
-	<button onclick="location.href='loginForm.html'">로그인폼</button>
+	<button onclick="location.href='<%=request.getContextPath()%>/LoginForm_Active'">로그인폼</button>
+	<a href="<%=request.getContextPath()%>/memberListServlet">디버그용 - 회원리스트</a>
 	<br>
 
 </body>

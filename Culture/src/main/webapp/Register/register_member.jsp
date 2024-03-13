@@ -67,7 +67,7 @@ button {
 
 	<div class="container">
 		<h1>회원가입</h1>
-		<form id="registerForm" action="Servlet_check_insert_UserData_by_input"
+		<form id="registerForm" action="<%=request.getContextPath()%>/Servlet_check_insert_UserData_by_input"
 			method="post">
 			<label for="userId">아이디 (영어 + 숫자, 최소 4글자)</label> 
 				<input type="text" id="userId" name="userId" pattern="[a-zA-Z0-9]{4,}" required readonly>
@@ -135,7 +135,7 @@ button {
 	<script type="text/javascript">
 		//ID 새창 열기
 		function openIdWindow() {
-			var popup = window.open("childWindowConfirmID.html", "아이디 확인",
+			var popup = window.open("<%=request.getContextPath()%>/Register/child_check_ID_dupilicate.jsp", "아이디 확인",
 					"width=400,height=200");
 			popup.onbeforeunload = function() {
 				var confirmedUserId = popup.$("#confirmUserId").val();
@@ -150,7 +150,7 @@ button {
 			
 			$.ajax({
                 type: "POST",
-                url: "Ajax_check_Nickname_duplicate_for_register", 
+                url: "<%=request.getContextPath()%>/Ajax_check_Nickname_duplicate_for_register", 
                 data: { nickname: nickname },
                 success: function (response) {
                     if (response === "duplicate") {
@@ -189,7 +189,7 @@ button {
 		    if (userPhoneNum1 && userPhoneNum2 && userPhoneNum3) {
 		        $.ajax({
 		            type: "POST",
-		            url: "Ajax_check_PhoneNum_duplicate_for_register", 
+		            url: "<%=request.getContextPath()%>/Ajax_check_PhoneNum_duplicate_for_register", 
 		            data: {
 		            	userPhoneNum1: userPhoneNum1,
 		            	userPhoneNum2: userPhoneNum2,
@@ -230,7 +230,7 @@ button {
 		    if (userEmailId && userEmailDomain) {
 		        $.ajax({
 		            type: "POST",
-		            url: "Ajax_check_Email_duplicate_for_register", 
+		            url: "<%=request.getContextPath()%>/Ajax_check_Email_duplicate_for_register", 
 		            data: {
 		            	userEmailId: userEmailId,
 		            	userEmailDomain: userEmailDomain,
@@ -259,7 +259,7 @@ button {
 		    if (userEmailId && userEmailDomain) {
 		        $.ajax({
 		            type: "POST",
-		            url: "Ajax_check_Email_duplicate_for_register", 
+		            url: "<%=request.getContextPath()%>/Ajax_check_Email_duplicate_for_register", 
 		            data: {
 		            	userEmailId: userEmailId,
 		            	userEmailDomain: userEmailDomain,

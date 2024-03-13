@@ -23,9 +23,6 @@ public class Servlet_login_by_ID_PW extends HttpServlet {
 	//일치하면 loginSuccess.jsp(임시)
 	//불일치하면 cantFindUser.jsp로 이동
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
@@ -39,10 +36,10 @@ public class Servlet_login_by_ID_PW extends HttpServlet {
 		HttpSession session = request.getSession();
 		if (foundUser != null && !foundUser.isEmpty()) {
 			session.setAttribute("foundUser", foundUser);
-			RequestDispatcher dis = request.getRequestDispatcher("loginSuccess.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("Login/login_success.jsp");
 			dis.forward(request, response);
 		} else {
-			RequestDispatcher dis = request.getRequestDispatcher("cantFindUser.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("Find_Info/cant_find_UserData.jsp");
 			dis.forward(request, response);
 		}
 	

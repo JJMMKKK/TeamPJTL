@@ -8,7 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>전체 비밀번호 확인</title>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
 
 <style>
 body {
@@ -65,9 +66,16 @@ button:hover {
 <script type="text/javascript">
 
 	//userId를 받아 처리하는 함수
-	 var userId = opener.document.getElementById("userId").value;;
+	 var userId = opener.$("#userId").val();
+	console.log(userId);
+	
+	function moveToParentPage() {
+		window.opener.location.href = "<%=request.getContextPath()%>/Servlet_search_all_PW_by_answer?userId=" + userId;
+        window.close(); 
+    }
 	
 	function checkUserAnswer() {
+		
 		 var userInfo = $("#confirmUserInfo").val();
          var answer = $("#userAnswer").val();
          var errorSpan = $("#confirmAnswerError");
@@ -85,7 +93,7 @@ button:hover {
 			//질문에 대한 답변 타당성 판정
 			$.ajax({
 				type : "POST",
-				url : "Ajax_match_QnA_for_find_all_PW",
+				url : "<%=request.getContextPath()%>/Ajax_match_QnA_for_find_all_PW",
 				data : {
 					userInfo : userInfo,
 					answer : answer,
@@ -104,10 +112,6 @@ button:hover {
 			});
 		}
 	}
-	function moveToParentPage() {
-		window.opener.location.href = "Servlet_search_all_PW_by_answer?userId=" + userId;
-        window.close(); 
-    }
 	
 </script>
 

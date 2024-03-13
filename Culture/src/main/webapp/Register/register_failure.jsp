@@ -56,7 +56,7 @@
     </div>
 
     <div id="sitesShortCut">
-        <a href="loginForm.html">로그인</a> | <a href="register_Term.jsp">회원가입</a>
+        <a href="<%=request.getContextPath()%>/LoginForm_Active">로그인</a> | <a href="<%=request.getContextPath()%>/connect_to_register_agree_terms">회원가입</a>
     </div>
 </body>
 </html>

@@ -46,7 +46,7 @@
 
     <script type="text/javascript">
         setTimeout(function () {
-            window.location.href = "loginForm.html";
+            window.location.href = "<%=request.getContextPath()%>/LoginForm_Active";
         }, 5000);
     </script>
     
@@ -58,7 +58,7 @@
     </div>
 
     <div id="sitesShortCut">
-        <a href="loginForm.html">로그인</a>
+        <a href="<%=request.getContextPath()%>/LoginForm_Active">로그인</a>
     </div>
 </body>
 </html>
