@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dto.PostMapper">
+
+
+    <!-- 삽입 -->
+	<insert id="insertContent" parameterType="PostDTO">
+	    <selectKey keyProperty="postId" resultType="long" order="BEFORE">
+	        SELECT POSTIDSEQ.NEXTVAL AS postId FROM DUAL
+	    </selectKey>
+	    INSERT INTO postDB (postid, postBoard, userid, contid, postTitle, postDate, postEditDate, postText)
+	    VALUES (#{postId}, #{postBoard}, #{userId}, #{contId, jdbcType=NUMERIC}, #{postTitle}, SYSTIMESTAMP, null, #{postText})
+	</insert>
+	
+    <!-- 조회 -->
+    <select id="selectPost" resultType="PostDTO" parameterType="Long">
+        SELECT * FROM postdb WHERE postid = #{postId}
+    </select>
+
+	<delete id="deletePostInfo" parameterType="long">
+	    DELETE FROM postinfodb WHERE postid = #{postId}
+	</delete>
+	
+	<delete id="deletePost" parameterType="long">
+	    DELETE FROM postdb WHERE postid = #{postId}
+	</delete>
+
+
+    <!-- 전체 조회 -->
+    <select id="selectAllPosts" resultType="PostDTO">
+        SELECT * FROM postdb WHERE postBoard = #{board}
+    </select>
+
+    <!-- 업데이트 -->
+    <update id="updateContent" parameterType="map">
+        UPDATE postdb
+        SET postTitle = #{updatedTitle},
+            postText = #{updatedContent},
+            postEditDate = SYSTIMESTAMP
+        WHERE postId = #{postId}
+    </update>
+    
+    <!-- 페이지네이션을 위한 게시물 조회 -->
+	<select id="selectAllByPage" resultType="PostDTO">
+    SELECT * FROM (
+        SELECT a.*, ROWNUM rnum FROM (
+            SELECT * FROM postDB 
+            WHERE postBoard = #{board} 
+            ORDER BY postId DESC
+        ) a
+    ) WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{perPage}
+	</select>
+
+
+    <!-- 게시물 총 개수 조회 -->
+    <select id="countPosts" resultType="int">
+        SELECT COUNT(*) FROM postDB
+        WHERE postBoard = #{board}
+    </select>
+    
+        <!-- 게시물 조회수 업데이트 -->
+	<update id="updateViewNum" parameterType="long">
+		UPDATE postInfoDB 
+		SET viewNum =
+			((SELECT viewNum FROM postInfoDB WHERE postId = #{postId} )+1) 
+		WHERE postId = #{postId}
+	</update>
+
+</mapper>
