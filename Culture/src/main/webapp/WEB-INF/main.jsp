@@ -15,6 +15,7 @@
 	</style>
 </head>
 <body>
-<jsp:include page="common/navBar.jsp"></jsp:include>
+<jsp:include page="../common/navbar.jsp"></jsp:include>
+<jsp:include page="//common/homeBody.jsp"></jsp:include>
 </body>
 </html>
