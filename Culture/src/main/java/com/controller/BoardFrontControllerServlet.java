@@ -16,6 +16,7 @@ import com.controller.board.BoardDeleteController;
 import com.controller.board.BoardEditController;
 import com.controller.board.BoardViewController;
 import com.controller.board.BoardWriteController;
+import com.controller.board.util.AuthUtils;
 import com.controller.board.util.BoardController;
 import com.controller.board.util.BoardView;
 
@@ -27,6 +28,7 @@ public class BoardFrontControllerServlet extends HttpServlet {
 	private Map<String, BoardController> controllerMap = new HashMap<>();
 
 	public BoardFrontControllerServlet() {
+		
 		// 다양한 URI에 대해 컨트롤러를 매핑
 		controllerMap.put("/Acorn/board/content", new BoardContentController());
 		controllerMap.put("/Acorn/board/write", new BoardWriteController());
@@ -35,10 +37,17 @@ public class BoardFrontControllerServlet extends HttpServlet {
 
 		// 게시판 추가 가능
 		controllerMap.put("/Acorn/board/movie", new BoardViewController("movie"));
+		controllerMap.put("/Acorn/board/movieMeet", new BoardViewController("movieMeet"));
+		controllerMap.put("/Acorn/board/movieInfo", new BoardViewController("movieInfo"));
 		controllerMap.put("/Acorn/board/music", new BoardViewController("music"));
+		controllerMap.put("/Acorn/board/musicMeet", new BoardViewController("musicMeet"));
+		controllerMap.put("/Acorn/board/musicInfo", new BoardViewController("musicInfo"));
 		controllerMap.put("/Acorn/board/book", new BoardViewController("book"));
+		controllerMap.put("/Acorn/board/bookMeet", new BoardViewController("bookMeet"));
+		controllerMap.put("/Acorn/board/bookInfo", new BoardViewController("bookInfo"));
+		
 	}
-
+	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -55,6 +64,9 @@ public class BoardFrontControllerServlet extends HttpServlet {
 
 		// 요청 파라미터를 paramMap으로 변환
 		Map<String, String> paramMap = createParamMap(request);
+		
+		// 유저 로그인 검증
+		AuthUtils.addUserLoginInfo(paramMap, request);
 
 		// 뷰에서 사용할 모델 객체 생성
 		Map<String, Object> model = new HashMap<>(); // 추가
@@ -79,6 +91,7 @@ public class BoardFrontControllerServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		request.getParameterNames().asIterator()
 				.forEachRemaining(paramName -> paramMap.put(paramName, request.getParameter(paramName)));
+		
 		return paramMap;
 	}
 
