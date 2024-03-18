@@ -6,125 +6,13 @@
 
 <!--로그인 메인 페이지의 html-->
 
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/member/Main.css">
+
 <head>
     <meta charset="UTF-8">
     <title>Login Page</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <style>
-    	.warning-icon {
-            font-size: 20px;
-            margin-right: 8px;
-            color: #856404;
-        }
     
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column; /* 기존에는 가운데 정렬이었으므로, 세로 방향으로 정렬하기 위해 추가 */
-           
-        }
-
-       #for_Login {
-		    background-color: white;
-		    padding: 20px;
-		    border-radius: 5px;
-		    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-		    margin: 100px auto; 
-		    width: 80%; 
-		    max-width: 440px; 
-		}
-
-        table {
-            width: 100%;
-        }
-
-        table tr {
-            margin-bottom: 10px;
-        }
-
-        table td {
-            padding: 10px;
-        }
-
-        #showPasswd {
-            background-color: #007BFF;
-            color: white;
-            padding: 8px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-
-        #showPasswd:hover {
-            background-color: #0056b3;
-        }
-
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-
-        input[type="submit"] {
-            background-color: #28a745;
-            color: white;
-            padding: 15px 20px; /* 크기 조절 */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-
-        }
-
-        input[type="submit"]:hover {
-			width: 100%;
-            background-color: #218838;
-        }
-
-        #sitesShortCut {
-            margin-top: 10px;
-            text-align: center;
-        }
-
-        #sitesShortCut a {
-            text-decoration: none;
-            background-color: #007BFF;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 5px;
-            font-weight: bold;
-            margin: 0 5px;
-        }
-
-        #sitesShortCut a:hover {
-            background-color: #0056b3;
-        }
-
-        #debugLink {
-            display: block;
-            margin-top: 10px;
-            text-align: center;
-        }
-
-        #debugLink a {
-            text-decoration: none;
-            color: #6c757d;
-            font-size: 14px;
-        }
-
-        #debugLink a:hover {
-            color: #495057;
-        }
-        
-        #header {
-			display: block;
-   		}
-		
-    </style>
     <script type="text/javascript">
         $(function () {
 			
@@ -134,11 +22,23 @@
 			$("#loginForm").on("submit", function(event) {
 				event.preventDefault(); // 폼이 서버로 전송되지 않도록 기본 동작을 막음
 				
+				document.cookie = "savedUserId=; expires=0; path=/";
+				document.cookie = "savedUserPw=; expires=0; path=/";
+				
 	            // 아이디 저장 체크박스 상태에 따라 쿠키 생성
 	            if ($("#userIdSave").prop("checked")) {
 	                var userId = $("#userId").val();
 	                //쿠키 유효기간 1일, 경로 지정은 보류(WEB-INF/member/Login/loginMain.jsp)
 	                document.cookie = "savedUserId=" + userId + "; expires=" + getCookieExpiration(1) + "; path=/";
+	            }
+	            
+	         	// 자동로그인 체크박스 상태에 따라 쿠키 생성
+	            if ($("#autoLogin").prop("checked")) {
+	            	var userId = $("#userId").val();
+	            	var userPw = $("#userPw").val();
+	                //쿠키 유효기간 1일, 경로 지정은 보류(WEB-INF/member/Login/loginMain.jsp)
+	            	document.cookie = "savedUserId=" + userId + "; expires=" + getCookieExpiration(1) + "; path=/";
+	            	document.cookie = "savedUserPw=" + userPw + "; expires=" + getCookieExpiration(1) + "; path=/";
 	            }
 				
 	   			// 이전 Ajax 요청이 진행 중이라면 취소(4면 요청이 완료되었음을 의미)
@@ -247,6 +147,7 @@
             
          	// 쿠키 불러오기
             var savedUserId = getCookie("savedUserId");
+            var savedUserPw = getCookie("savedUserPw");
 
             // 쿠키를 이름으로 가져오는 함수
             function getCookie(name) {
@@ -262,6 +163,14 @@
                 $("#userId").val(savedUserId);
                 $("#userIdSave").prop("checked", true);
             }
+            
+            // 자동로그인으로 비밀번호 쿠기가 존재하면 비밀번호 입력칸에 표시
+            if (savedUserPw) {
+                $("#userPw").val(savedUserPw);
+                $("#autoLogin").prop("checked", true);
+            }
+            
+            
             
         });	//$("#showPasswd").click(function ()
     </script>
@@ -284,16 +193,16 @@
             <table>
                 <tr>
                     <td>아이디:</td>
-                    <td><input type="text" id="userId" name="userId" class="loginSet" pattern="[a-zA-Z0-9]{4,}" autofocus></td>
+                    <td><input type="text" id="userId" name="userId" class="loginSet" pattern="[a-zA-Z0-9]{4,}" autofocus autofocus autocomplete="off"></td>
 					<td><input type="checkbox" id="userIdSave" name="userIdSave" class="loginSet">아이디 저장<br>
 						<input type="checkbox" id="autoLogin" name="autoLogin">자동로그인<br>
-						<span class="warning-icon">&#9888;</span>공사중<span class="warning-icon">&#9888;</span></td>
+						<span class="warning-icon">&#9888;</span>작동 확인 중<span class="warning-icon">&#9888;</span></td>
                 </tr>
                 <tr>
                 </tr>
                 <tr>
                     <td>비밀번호:</td>
-                    <td><input type="password" id="userPw" name="userPw" class="loginSet"></td>
+                    <td><input type="password" id="userPw" name="userPw" class="loginSet" autocomplete="off"></td>
                     <td><button type="button" id="showPasswd">비밀번호 보이기</button><br>
                 </tr>
                 <tr>
