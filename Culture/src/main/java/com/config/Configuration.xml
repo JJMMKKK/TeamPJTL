@@ -18,6 +18,9 @@
 	<!--  -->
    	<typeAlias type="com.dto.MemberDTO" alias="MemberDTO"/>
    	<typeAlias type="com.dto.ReviewDTO" alias="ReviewDTO"/>
+   	<typeAlias type="com.dto.ReviewDTO" alias="ReviewDTO"/>
+   	<typeAlias type="com.dto.AdminBoardDTO" alias="AdminBoardDTO"/>
+   	<typeAlias type="com.dto.AdminMemberDTO" alias="AdminMemberDTO"/>
 	<typeAlias type="com.dto.RateDTO" alias="RateDTO"/>
 	<typeAlias type="com.dto.ContentDTO" alias="ContentDTO"/>
   </typeAliases>
@@ -40,5 +43,8 @@
     <mapper resource="com/config/MemberMapper.xml"/>
     <mapper resource="com/config/CommentMapper.xml"/>
     <mapper resource="com/config/ReviewMapper.xml"/>
+    <mapper resource="com/config/AdminBoardMapper.xml"/>
+    <mapper resource="com/config/AdminMemberMapper.xml"/>
+    <mapper resource="com/config/MyPageMapper.xml"/>
   </mappers>
 </configuration>

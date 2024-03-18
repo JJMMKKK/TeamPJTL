@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.controller.board.BoardContentController;
 import com.controller.board.BoardDeleteController;
 import com.controller.board.BoardEditController;
+import com.controller.board.BoardLikeController;
 import com.controller.board.BoardViewController;
 import com.controller.board.BoardWriteController;
 import com.controller.board.util.AuthUtils;
@@ -34,14 +35,15 @@ public class BoardFrontControllerServlet extends HttpServlet {
 		controllerMap.put("/Acorn/board/write", new BoardWriteController());
 		controllerMap.put("/Acorn/board/edit", new BoardEditController());
 		controllerMap.put("/Acorn/board/delete", new BoardDeleteController());
+		controllerMap.put("/Acorn/board/postLike", new BoardLikeController());
 
 		// 게시판 추가 가능
 		controllerMap.put("/Acorn/board/movie", new BoardViewController("movie"));
 		controllerMap.put("/Acorn/board/movieMeet", new BoardViewController("movieMeet"));
 		controllerMap.put("/Acorn/board/movieInfo", new BoardViewController("movieInfo"));
-		controllerMap.put("/Acorn/board/music", new BoardViewController("music"));
-		controllerMap.put("/Acorn/board/musicMeet", new BoardViewController("musicMeet"));
-		controllerMap.put("/Acorn/board/musicInfo", new BoardViewController("musicInfo"));
+		controllerMap.put("/Acorn/board/tv", new BoardViewController("tv"));
+		controllerMap.put("/Acorn/board/tvMeet", new BoardViewController("tvMeet"));
+		controllerMap.put("/Acorn/board/tvInfo", new BoardViewController("tvInfo"));
 		controllerMap.put("/Acorn/board/book", new BoardViewController("book"));
 		controllerMap.put("/Acorn/board/bookMeet", new BoardViewController("bookMeet"));
 		controllerMap.put("/Acorn/board/bookInfo", new BoardViewController("bookInfo"));
@@ -78,7 +80,10 @@ public class BoardFrontControllerServlet extends HttpServlet {
 		if (viewName.startsWith("redirect:")) {
 			String redirectURL = viewName.substring("redirect:".length());
 			response.sendRedirect(redirectURL);
-		} else {
+		} else if(viewName.startsWith("{")) { // JSON 응답으로 가정
+	        response.setContentType("application/json; charset=utf-8");
+	        response.getWriter().write(viewName);
+	    } else {
 			// 뷰 이름을 해석해서 렌더링하고 응답
 			BoardView view = viewResolver(viewName);
 			view.render(model, request, response);
